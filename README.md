@@ -15,7 +15,7 @@ MeetEasier is a web application that visualizes meeting room availability.  It w
 This application assumes you have:
 
 * Exchange Online (Office 365)
-* Conference room mailboxes are organized in room lists
+* Conference room mailboxes organized in room lists
 * Exchange Web Services (EWS) enabled
 * A service account with access to all conference room mailboxes and EWS
 * A web server to run the application
