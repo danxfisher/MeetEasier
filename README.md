@@ -4,7 +4,7 @@ Because why pay money for something you can do yourself?
 
 ## Description
 
-MeetEasier is a web application that visualizes meeting room availability.  It works using Exchange Web Services (EWS) with Exchange room lists and Office365.
+MeetEasier is a web application that visualizes meeting room availability.  It works using Exchange Web Services (EWS) with Exchange room lists in Office 365.
 
 ![Mockup 1](mockups/mockup-1.jpg)
 
