@@ -164,6 +164,8 @@ Within the `layouts/` folder are two layout components:
 
 ![Mockup 2](mockups/mockup-2.jpg)
 
+***
+
 ## Resources & Attributions
 
 * [ews-javascript-api](https://github.com/gautamsi/ews-javascript-api)
