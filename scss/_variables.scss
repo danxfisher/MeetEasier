@@ -1,0 +1,28 @@
+// color variables =============================================================
+// global colors ---------------------------------------------------------------
+$primary: #455975;
+$yellow: #ffae00;
+$green: #3adb76;
+$greenDark: #289952;
+$gray: #474747;
+$grayDark: #333;
+$grayLightest: #eceef1;
+$grayLight: #d4d6d8;
+$red: #f04124;
+
+// font colors -----------------------------------------------------------------
+$primaryFont: #ffffff;
+
+// area specific colors --------------------------------------------------------
+// body +++++++++++++++++++++++++++++++++++++++++++++++++
+$bodyBackground: #191919;
+
+// cards ++++++++++++++++++++++++++++++++++++++++++++++++
+$cardBackground: $grayDark;
+$cardBorder: $gray;
+
+// title bar ++++++++++++++++++++++++++++++++++++++++++++
+$titleBarBackground: $grayDark;
+$titleBarBottomBorder: $gray;
+$titleBarButton: #ffffff;
+$titleBarLiBorder: $gray;
