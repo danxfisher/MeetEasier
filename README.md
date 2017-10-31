@@ -59,7 +59,7 @@ There are three main directories in the `ui-react/src/` folder:
 
 ***
 
-### components/
+### Components
 
 Within `components/`, each component itself is structure by it's use:
 
@@ -90,7 +90,7 @@ Within the `components/global/` folder, each global component is broken out:
 
 ***
 
-### config/
+### Config
 
 Within the `config/` folder is one single config file:
 
