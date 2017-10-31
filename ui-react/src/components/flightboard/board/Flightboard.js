@@ -132,14 +132,6 @@ class Flightboard extends Component {
                           <div className="medium-1 columns">
                             <div className="meeting-fullscreen">
 
-                              {/* <Link
-                                to={{
-                                  pathname: '/single-room/' + room,
-                                  email: item.Email,
-                                  state: {
-                                    email: item.Email
-                                  }
-                                }}> */}
                               <Link to={'/single-room/' + room} target="_blank">
                                 <i className="fi-monitor"></i>
                               </Link>

@@ -32,7 +32,7 @@ module.exports = function (callback) {
           rooms.forEach(function (roomItem, roomIndex, roomsArray) {
             var room = {};
 
-            // if you email address != your corporate domain,
+            // if the email addresses != your corporate domain,
             // replace email domain with domain
             var email = roomItem.Address;
             email = email.substring(0, email.indexOf('@'));
