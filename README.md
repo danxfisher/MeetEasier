@@ -8,6 +8,8 @@ MeetEasier is a web application that visualizes meeting room availability.  It w
 
 ![Mockup 1](mockups/mockup-1.jpg)
 
+***
+
 ## To Use
 
 1. *Optional*: Install IISNode
