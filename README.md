@@ -113,7 +113,7 @@ Within the `layouts/` folder are two layout components:
 
 * In `/config/auth.js`, enter your credentials and domain:
 
-    ```
+    ```javascript
     module.exports = {
       // this user MUST have full access to all the room accounts
       'exchange' : {
