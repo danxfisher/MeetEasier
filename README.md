@@ -57,8 +57,6 @@ There are three main directories in the `ui-react/src/` folder:
 * `config/` : Customizable config file (see defails below in Customization section)
 * `layouts/` : Layout components for the two different layouts used.
 
-***
-
 ### Components
 
 Within `components/`, each component itself is structure by it's use:
@@ -88,15 +86,11 @@ Within the `components/global/` folder, each global component is broken out:
 * `clock/` : Clock component for the upper right hand of the display
 * `display/` : All other features of the single room display
 
-***
-
 ### Config
 
 Within the `config/` folder is one single config file:
 
 `flightboard.config.js` : Simple customization config explained in the Customization section
-
-***
 
 ### Layouts
 
