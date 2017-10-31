@@ -16,8 +16,9 @@ This application assumes:
 
 * You are using Exchange Online (Office 365)
 * Your conference room mailboxes are organized in room lists
-* You have a service account with access to all conference room mailboxes
 * You have Exchange Web Services (EWS) enabled
+* You have a service account with access to all conference room mailboxes and EWS
+* You have a web server to run the application
 
 ***
 
