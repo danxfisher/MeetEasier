@@ -15,7 +15,7 @@ MeetEasier is a web application that visualizes meeting room availability.  It w
 1. *Optional*: Install IISNode
     * I've also included a `web.config` file for an IIS install
 2. In root directory, open a terminal or cmd:
-    ```
+    ```shell
     $ npm install
     ```
 3. Navigate to `ui-react/`. In the `package.json` file, change:
@@ -127,7 +127,7 @@ Within the `layouts/` folder are two layout components:
 
 * In `/ui-react/src/config/flightboard.config.js`, manage your customizations:
 
-    ```
+    ```javascript
     module.exports = {
         'title' : 'Conference Room Availability',
         'filterTitle' : 'Locations',
@@ -148,7 +148,7 @@ Within the `layouts/` folder are two layout components:
 * To updated styles, make sure you install grunt first with `npm install -g grunt-cli`.  Then run `grunt` in the root directory to watch for SCSS changes.  Use the `.scss` files located in the `/scss` folder.
   * All React components can be locally styled by adding a new `.css` file and importing it into the component itself if you'd prefer to do it that way.
 * In `config/ews/rooms.js`, there is a block of code on lines 37-39 that may not be necessary but were added as a convenience.  Feel free to use it, comment it out, or remove it completely.  It was designed for a use case where the email addresses (ex: jsmith@domain.com) do not match the corporate domain of jsmith-enterprise.
-    ```
+    ```javascript
     // if the email domain != your corporate domain,
     // replace email domain with domain from auth config
     var email = roomItem.Address;
