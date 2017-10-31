@@ -15,9 +15,9 @@ MeetEasier is a web application that visualizes meeting room availability.  It w
 1. *Optional*: Install IISNode
     * I've also included a `web.config` file for an IIS install
 2. In root directory, open a terminal or cmd:
-        ```
-        $ npm install
-        ```
+    ```
+    $ npm install
+    ```
 3. Navigate to `ui-react/`. In the `package.json` file, change:
     ```
     "proxy" : "http://localhost:8080"
