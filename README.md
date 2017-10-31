@@ -133,9 +133,9 @@ Within the `layouts/` folder are two layout components:
 * If you'd like to change the interval in which the web socket emits, change the interval time in `config/controller.js`.  By default, it is set to 1 minute.
 * To updated styles, make sure you install grunt first with `npm install -g grunt-cli`.  Then run `grunt` in the root directory to watch for SCSS changes.  Use the `.scss` files located in the `/scss` folder.
   * All React components can be locally styled by adding a new `.css` file and importing it into the component itself if you'd prefer to do it that way.
-* In `config/ews/rooms.js`, there is a block of code on lines 37-39 that may not be necessary but were added as a convenience.  Feel free to use it, comment it out, or remove it completely.  It was designed for a use case where the email addresses (ex: jsmith@domain.com) does not match the corporate domain of jsmith-enterprise.
+* In `config/ews/rooms.js`, there is a block of code on lines 37-39 that may not be necessary but were added as a convenience.  Feel free to use it, comment it out, or remove it completely.  It was designed for a use case where the email addresses (ex: jsmith@domain.com) do not match the corporate domain of jsmith-enterprise.
     ```
-    // if the email addresses != your corporate domain,
+    // if the email domain != your corporate domain,
     // replace email domain with domain from auth config
     var email = roomItem.Address;
     email = email.substring(0, email.indexOf('@'));
