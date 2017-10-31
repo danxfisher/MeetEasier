@@ -35,6 +35,8 @@ MeetEasier is a web application that visualizes meeting room availability.  It w
     $ npm start
     ```
 
+***
+
 ## Root Folder Structure Explained
 
 * `app/` : Routes for EWS APIs
@@ -43,6 +45,8 @@ MeetEasier is a web application that visualizes meeting room availability.  It w
 * `static/` : All global static files
 * `ui-react/` : Front end React routes and components
 
+***
+
 ## React /src Folder Structure Explained
 
 There are three main directories in the `ui-react/src/` folder:
@@ -50,6 +54,8 @@ There are three main directories in the `ui-react/src/` folder:
 * `components/` : Components separated in folders by function
 * `config/` : Customizable config file (see defails below in Customization section)
 * `layouts/` : Layout components for the two different layouts used.
+
+***
 
 ### components/
 
@@ -80,11 +86,15 @@ Within the `components/global/` folder, each global component is broken out:
 * `clock/` : Clock component for the upper right hand of the display
 * `display/` : All other features of the single room display
 
+***
+
 ### config/
 
 Within the `config/` folder is one single config file:
 
 `flightboard.config.js` : Simple customization config explained in the Customization section
+
+***
 
 ### Layouts
 
@@ -92,6 +102,8 @@ Within the `layouts/` folder are two layout components:
 
 `flightboard/` : Layout for flightboard display
 `single-room/` : Layout for single room display
+
+***
 
 ## Customization
 
@@ -141,6 +153,8 @@ Within the `layouts/` folder are two layout components:
     email = email.substring(0, email.indexOf('@'));
     email = email + '@' + auth.domain + '.com';
     ```
+
+***
 
 ## Flightboard Layout Mockup
 
