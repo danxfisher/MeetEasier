@@ -16,12 +16,12 @@ MeetEasier is a web application that visualizes meeting room availability.  It w
     ```
     $ npm install
     ```
-3. Navigate to `ui-react`. In the `package.json` file, change:
+3. Navigate to `ui-react/`. In the `package.json` file, change:
     ```
     "proxy" : "http://localhost:8080"
     ```
     to whatever the IP of where express is running.  Typically you can use something similar to the default but you can change the IP and port as long as it coincides with what is in `server.js`.
-4. In `ui-react`, open a terminal or cmd:
+4. In `ui-react/`, open a terminal or cmd:
     ```
     $ npm install
     $ npm run build
@@ -30,7 +30,7 @@ MeetEasier is a web application that visualizes meeting room availability.  It w
     ```
     $ node server.js
     ```
-6. In `ui-react`, to start the react development server:
+6. In `ui-react/`, to start the react development server:
     ```
     $ npm start
     ```
