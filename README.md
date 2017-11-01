@@ -94,12 +94,12 @@ There are three main directories in the `ui-react/src/` folder:
 
 ### Config
 
-`flightboard.config.js` : Simple customization config explained in the Customization section
+* `flightboard.config.js` : Simple customization config explained in the Customization section
 
 ### Layouts
 
-`flightboard/` : Layout for flightboard display
-`single-room/` : Layout for single room display
+* `flightboard/` : Layout for flightboard display
+* `single-room/` : Layout for single room display
 
 ***
 
