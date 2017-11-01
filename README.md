@@ -71,15 +71,11 @@ There are three main directories in the `ui-react/src/` folder:
 
 ### Components
 
-Within `components/`, each component itself is structure by it's use:
-
 * `flightboard/` : All components related to the flightboard or "all meeting" layout
 * `global` : Components that will be used by both layouts
 * `single-room` : All components related to the Single Room layout
 
 #### components/flightboard/
-
-Within the `components/flightboard/` folder, each individual component is broken out:
 
 * `board/` : Actual flightboard component itself
 * `clock/` : Clock component for the upper right hand of the display
@@ -87,8 +83,6 @@ Within the `components/flightboard/` folder, each individual component is broken
 * `room-filter/` : Room list filter in the navbar
 
 #### components/global/
-
-Within the `components/global/` folder, each global component is broken out:
 
 * `not-found/` : A "not found" page if an error or "404" occurs
 * `socket/` : Work in progress
@@ -100,13 +94,9 @@ Within the `components/global/` folder, each global component is broken out:
 
 ### Config
 
-Within the `config/` folder is one single config file:
-
 `flightboard.config.js` : Simple customization config explained in the Customization section
 
 ### Layouts
-
-Within the `layouts/` folder are two layout components:
 
 `flightboard/` : Layout for flightboard display
 `single-room/` : Layout for single room display
