@@ -18,7 +18,7 @@ This application assumes you have:
 * Conference room mailboxes organized in room lists
 * Exchange Web Services (EWS) enabled
 * A service account with access to all conference room mailboxes and EWS
-* A web server to run the application
+* A web server with Node.js installed to run the application
 
 ***
 
@@ -85,7 +85,7 @@ There are three main directories in the `ui-react/src/` folder:
 #### components/global/
 
 * `not-found/` : A "not found" page if an error or "404" occurs
-* `socket/` : Work in progress
+* `socket/` : A service component to run the web socket connection for updating the flightboard and single room display
 
 #### components/single-room/
 
