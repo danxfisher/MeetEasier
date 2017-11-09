@@ -7,3 +7,4 @@
 * [ ] - Add Room Booking component/feature
 * [ ] - Make "Next Up", "Open", "Busy", "Upcoming", etc. all customizable as to enable multilingual support
 * [ ] - Look into port issues
+* [ ] - Change domain so it can be .com, .co.uk, etc
