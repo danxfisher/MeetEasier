@@ -6,6 +6,6 @@ module.exports = {
     'password'  : 'PASSWORD',
     'uri'       : 'https://outlook.office365.com/EWS/Exchange.asmx'
   },
-  // Ex: CONTOSO.COM, Contoso.com, Contoso.co.uk, etc.
+  
   'domain' : 'DOMAIN'
 };
