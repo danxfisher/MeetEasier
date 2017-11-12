@@ -62,7 +62,7 @@ class Flightboard extends Component {
             const room = item.Name.toLowerCase().replace(/\s+/g, "-");
             const roomlist = 'roomlist-' + item.Roomlist.toLowerCase().replace(/\s+/g, "-");
 
-            fbConfig.roomsToSkip.forEach(function(configItem, configKey) {
+            fbConfig.board.roomsToSkip.forEach(function(configItem, configKey) {
               // do stuff
               if(configItem === item.Email) {
                 skippedRoom = true;
@@ -75,7 +75,7 @@ class Flightboard extends Component {
               if (item.Appointments[0].Start && item.Appointments[0].End) {
                 timesPresent = true;
                 if (item.Appointments[0].Start < now && now < item.Appointments[0].End) { } else {
-                  nextUp = 'Next Up: ';
+                  nextUp = fbConfig.board.text.nextUp + ': ';
                 }
               }
             }
@@ -91,11 +91,11 @@ class Flightboard extends Component {
                           <div className={room + '-status meeting-room__status medium-2 columns'}>
                             {item.Busy ?
                               <div className="meeting-busy">
-                                Busy
+                                {fbConfig.board.text.statusBusy}
                               </div>
                               :
                               <div className="meeting-open">
-                                Open
+                                {fbConfig.board.text.statusAvailable}
                               </div>
                             }
                           </div>

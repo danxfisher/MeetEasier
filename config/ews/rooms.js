@@ -36,7 +36,7 @@ module.exports = function (callback) {
             // replace email domain with domain
             var email = roomItem.Address;
             email = email.substring(0, email.indexOf('@'));
-            email = email + '@' + auth.domain + '.com';
+            email = email + '@' + auth.domain;
 
             var roomAlias = roomItem.Name.toLowerCase().replace(/\s+/g, "-");
 

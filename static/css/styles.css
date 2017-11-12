@@ -191,9 +191,9 @@ body {
         #single-room__wrap .full-height .right-col table tr td {
           padding: 10px 8px; }
         #single-room__wrap .full-height .right-col table tr td.up__meeting-title {
-          font-size: 1.2vw; }
+          font-size: 1.1vw; }
         #single-room__wrap .full-height .right-col table tr td.up__meeting-time {
-          font-size: 1vw;
+          font-size: 0.9vw;
           color: #474747; }
   #single-room__wrap #error-wrap {
     width: 600px;

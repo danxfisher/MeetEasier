@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Clock from '../clock/Clock.js';
 import Socket from '../../global/socket/Socket';
 
+let srConfig = require('../../../config/singleRoom.config.js');
+
 class Display extends Component {
   constructor(props) {
     super(props);
@@ -60,7 +62,7 @@ class Display extends Component {
               if (item.Appointments[0].Start && item.Appointments[0].End) {
                 timesPresent = true;
                 if (item.Appointments[0].Start < now && now < item.Appointments[0].End) { } else {
-                  nextUp = 'Next Up: ';
+                  nextUp = srConfig.text.nextUp + ': ';
                 }
               }
             }
@@ -71,7 +73,7 @@ class Display extends Component {
 
                   <div className={item.Busy ? 'columns small-8 left-col busy' : 'columns small-8 left-col open'}>
                     <div id="single-room__room-name">{item.Name}</div>
-                    <div id="single-room__room-status">{item.Busy ? 'Busy' : 'Open'}</div>
+                    <div id="single-room__room-status">{item.Busy ? srConfig.text.statusBusy : srConfig.text.statusAvailable}</div>
                     { appointmentExists ?
                       <div id="single-room__meeting-title">
                         <span id="single-room__next-up">
@@ -99,7 +101,7 @@ class Display extends Component {
                       <Clock />
                     </div>
                     <div id="upcoming-title">
-                      Upcoming
+                      {srConfig.text.upcomingTitle}
                     </div>
                     <table>
                       { upcomingTable ?
@@ -107,7 +109,7 @@ class Display extends Component {
                         return (
                           <tr>
                             <td className="up__meeting-title">{aItem.Subject}</td>
-                            <td className="up__meeting-time" width="30%">
+                            <td className="up__meeting-time" width="44%">
                               {timesPresent ?
                                 new Date(parseInt(aItem.Start, 10)).toLocaleTimeString([], {weekday: 'short', hour: '2-digit', minute: '2-digit'}) + ' - ' + new Date(parseInt(aItem.End, 10)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
                                 : ''

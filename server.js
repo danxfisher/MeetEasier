@@ -21,4 +21,7 @@ var theserver = app.listen(port, function(){
 
 	// controller if using room lists
 	var controller = require('./config/controller.js')(io);
+
+	// log something so we know the server is working correctly
+	console.log('now we are cooking.');
 });

@@ -22,7 +22,7 @@ class Navbar extends Component {
               </li>
               <li>
 
-                {fbConfig.title}
+                {fbConfig.navbar.title}
 
                 <br />
                 <ul id="roomlist-filter" className="dropdown menu fb__dropdown" data-dropdown-menu>

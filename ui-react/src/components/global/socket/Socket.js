@@ -11,7 +11,7 @@ class Socket extends Component {
       response: false,
       now: new Date(),
       rooms: [],
-      endpoint: fbConfig.socketEndpoint
+      endpoint: fbConfig.socket.endpoint
     }
   }
 

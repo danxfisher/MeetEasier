@@ -1,9 +1,25 @@
 module.exports = {
-    'title' : 'Conference Room Availability',
-    'filterTitle' : 'Locations',
-    'filterAllTitle' : 'All Conference Rooms',
+  'board' : {
     'roomsToSkip' : [
       'ROOM_EMAIL@DOMAIN.com'
     ],
-    'socketEndpoint' : 'http://localhost:8080'
+    'text' : {
+      'nextUp' : 'Next Up',
+      'statusAvailable' : 'Open',
+      'statusBusy' : 'Busy',
+    }
+  },
+
+  'navbar' : {
+    'title' : 'Conference Room Availability',
+  },
+
+  'roomFilter' : {
+    'filterTitle' : 'Locations',
+    'filterAllTitle' : 'All Conference Rooms',
+  },
+
+  'socket' : {
+    'endpoint' : 'http://localhost:8080',
+  }
 };

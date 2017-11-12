@@ -10,6 +10,19 @@ MeetEasier is a web application that visualizes meeting room availability.  It w
 
 ***
 
+## Updates
+
+* v0.2
+  * Changed domain to accept more than just ".com" extension
+  * Changed `ui-react/config/flightboard.config.js` to handle all text so that the application can be multilingual
+  * Added `ui-react/config/singleRoom.config.js` to do the same for the `single-room` component
+  * Added `console.log` to `server.js` to know when the server is running correctly
+  * Updated styles slightly
+* v0.1
+  * Initial release
+
+***
+
 ## Assumptions
 
 This application assumes you have:
