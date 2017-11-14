@@ -10,6 +10,14 @@ MeetEasier is a web application that visualizes meeting room availability.  It w
 
 ***
 
+## License
+
+MeetEasier is licensed under the open source [GNU General Public License (GPL 3.0)](https://github.com/danxfisher/MeetEasier/blob/master/LICENSE).
+
+In the event of wanting to commercially distribute a closed source modification of this code, please contact me.
+
+***
+
 ## Updates
 
 * v0.2
