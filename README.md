@@ -142,6 +142,14 @@ There are three main directories in the `ui-react/src/` folder:
     };
     ```
 
+* Alternatively, username, password and domain can be set as environment variable
+
+    ```bash
+    export USERNAME=svcacct_email@domain.com
+    export PASSWORD=password
+    export DOMAIN=domain.com
+    ```
+
 * In `/ui-react/src/config/flightboard.config.js`, manage your customizations:
 
     ```javascript
