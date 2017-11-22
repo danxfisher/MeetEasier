@@ -1,6 +1,10 @@
 {
   "name": "flighttracker",
   "main": "server.js",
+  "engines": {
+    "node": ">=6.0.0",
+    "npm": ">=3.0.0"
+  },
   "dependencies": {
     "ews-javascript-api": "^0.8.0",
     "express": "^4.16.2",
