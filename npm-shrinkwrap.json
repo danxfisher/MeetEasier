@@ -694,6 +694,12 @@
         }
       }
     },
+    "grunt-cli": {
+      "version": "1.2.0",
+      "from": "grunt-cli@latest",
+      "resolved": "https://registry.npmjs.org/grunt-cli/-/grunt-cli-1.2.0.tgz",
+      "dev": true
+    },
     "grunt-contrib-sass": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/grunt-contrib-sass/-/grunt-contrib-sass-1.0.0.tgz",

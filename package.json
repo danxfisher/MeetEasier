@@ -8,6 +8,8 @@
   "scripts": {
     "postinstall": "cd ui-react && npm install",
     "build": "cd ui-react && npm run build",
+    "build-styles": "grunt sass",
+    "build-styles:watch": "grunt",
     "start": "node server",
     "start-ui-dev": "cd ui-react && npm start"
   },
@@ -19,5 +21,7 @@
     "grunt-contrib-watch": "1.0.0",
     "socket.io": "1.7.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "grunt-cli": "1.2.0"
+  }
 }
