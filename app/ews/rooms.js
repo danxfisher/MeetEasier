@@ -92,7 +92,7 @@ module.exports = function (callback) {
     context.itemsProcessed++;
 
     if (context.itemsProcessed === context.roomAddresses.length) {
-      context.roomAddresses.sort(sortByRoomName);
+      context.roomAddresses.sort((a, b) => a.Name.toLowerCase().localeCompare(b.Name.toLowerCase()));
       context.callback(context.roomAddresses);
     }
   };
@@ -135,18 +135,6 @@ module.exports = function (callback) {
 
     return time;
   }
-
-  // function to sort by room name
-  function sortByRoomName(a, b) {
-    var nameA = a.Name.toLowerCase();
-    var nameB = b.Name.toLowerCase();
-      if (nameA < nameB) //sort string ascending
-        return -1;
-      if (nameA > nameB)
-        return 1;
-    return 0; //default return value (no sorting)
-  }
-
 
   // perform promise chain to get rooms
   getListOfRooms()
