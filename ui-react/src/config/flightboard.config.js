@@ -7,6 +7,7 @@ module.exports = {
       'nextUp' : 'Next Up',
       'statusAvailable' : 'Open',
       'statusBusy' : 'Busy',
+      'statusError' : 'Error'
     }
   },
 

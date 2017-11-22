@@ -81,23 +81,30 @@ class Flightboard extends Component {
             }
             // if the room needs to be skipped, return null
             if (!skippedRoom) {
+              let meetingRoomClass = `${ room } meeting-room ${ item.Busy ? 'meeting-room-busy' : '' }`;
+              meetingRoomClass += item.Busy ? ' meeting-room-busy' : '';
+              meetingRoomClass += item.ErrorMessage ? ' meeting-room-error' : '';
+              const meetingClass = item.ErrorMessage
+                ? 'meeting-error'
+                : item.Busy
+                  ? 'meeting-busy'
+                  : 'meeting-open';
+              let statusText = item.ErrorMessage
+                ? fbConfig.board.text.statusError
+                : item.Busy
+                  ? fbConfig.board.text.statusBusy
+                  : fbConfig.board.text.statusAvailable;
               return (
 
                 <div className={'row-padder ' + roomlist} style={this.props.filter === roomlist || this.props.filter === 'roomlist-all' || this.props.filter === '' ? styles.show : styles.hide}>
                   <div className="row">
                     <div className="medium-12 columns">
-                      <div className={item.Busy ? room + ' meeting-room meeting-room-busy' : room + ' meeting-room'}>
+                      <div className={meetingRoomClass}>
                         <div className="row valign-middle">
                           <div className={room + '-status meeting-room__status medium-2 columns'}>
-                            {item.Busy ?
-                              <div className="meeting-busy">
-                                {fbConfig.board.text.statusBusy}
-                              </div>
-                              :
-                              <div className="meeting-open">
-                                {fbConfig.board.text.statusAvailable}
-                              </div>
-                            }
+                            <div className={meetingClass} title={item.ErrorMessage || ''}>
+                              {statusText}
+                            </div>
                           </div>
                           <div className="medium-3 columns">
                             <div className={room + '-name meeting-room__name'}>

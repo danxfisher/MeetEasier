@@ -117,6 +117,9 @@ body {
   .meeting-room .meeting-upcoming {
     font-size: 24px;
     color: #ffae00; }
+  .meeting-room .meeting-error {
+    font-size: 24px;
+    color: #f3840e; }
   .meeting-room .meeting-room__name {
     font-size: 30px;
     color: #eceef1; }
@@ -134,6 +137,9 @@ body {
 
 .meeting-room-busy {
   border-left: 8px solid #f04124 !important; }
+
+.meeting-room-error {
+  border-left: 8px solid #f3840e !important; }
 
 #single-room__wrap {
   height: 100vh;

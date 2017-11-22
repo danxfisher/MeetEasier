@@ -59,54 +59,56 @@ module.exports = function (callback) {
     return promise;
   };
 
+  var fillRoomData = function (context, room, appointments = [], option = {}) {
+    room.Appointments = [];
+    appointments.forEach(function(appt, index) {
+      // get start time from appointment
+      var start = processTime(appt.Start.momentDate),
+          end = processTime(appt.End.momentDate),
+          now = Date.now();
+
+      room.Busy = index === 0
+        ? start < now && now < end
+        : room.Busy;
+
+      room.Appointments.push({
+        "Subject" : appt.Subject,
+        "Organizer" : appt.Organizer.Name,
+        "Start" : start,
+        "End"   : end
+      });
+    });
+
+    if (option.errorMessage) {
+      room.ErrorMessage = option.errorMessage;
+    }
+
+    context.itemsProcessed++;
+
+    if (context.itemsProcessed === context.roomAddresses.length) {
+      context.roomAddresses.sort(sortByRoomName);
+      context.callback(context.roomAddresses);
+    }
+  };
+
   // promise: get current or upcoming appointments for each room
   var getAppointmentsForRooms = function (roomAddresses) {
     var promise = new Promise(function (resolve, reject) {
-      var itemsProcessed = 0;
+      var context = {
+        callback: resolve,
+        itemsProcessed: 0,
+        roomAddresses
+      };
 
       roomAddresses.forEach(function(room, index, array){
         var calendarFolderId = new ews.FolderId(ews.WellKnownFolderName.Calendar, new ews.Mailbox(room.Email));
         var view = new ews.CalendarView(ews.DateTime.Now, new ews.DateTime(ews.DateTime.Now.TotalMilliSeconds + ews.TimeSpan.FromHours(240).asMilliseconds()), 6);
         exch.FindAppointments(calendarFolderId, view).then((response) => {
-
-          var appointments = response.Items;
-          var appointment = appointments[0];
-
-          if (appointments) {
-            room.Appointments = [];
-            appointments.forEach(function(appt, index, array) {
-              // get start time from appointment
-              var start = processTime(appt.Start.momentDate);
-              var end = processTime(appt.End.momentDate);
-              var now = Date.now();
-
-              if(index === 0) {
-                if (start < now && now < end) {
-                  room.Busy = true;
-                }
-                else {
-                  room.Busy = false;
-                }
-              }
-
-              room.Appointments.push({
-                "Subject" : appt.Subject,
-                "Organizer" : appt.Organizer.Name,
-                "Start" : start,
-                "End"   : end
-              });
-            });
-          }
-
-          itemsProcessed++;
-
-          if (itemsProcessed === array.length) {
-            roomAddresses.sort(sortByRoomName);
-            resolve(roomAddresses);
-          }
+          fillRoomData(context, room, response.Items);
         }, (error) => {
           // handle the error here
-          callback(error, null);
+//          callback(error, null);
+          fillRoomData(context, room, undefined, { errorMessage: error.response.errorMessage });
         });
       });
     });
