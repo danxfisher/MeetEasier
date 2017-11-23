@@ -153,12 +153,14 @@ There are three main directories in the `ui-react/src/` folder:
     };
     ```
 
-* Alternatively, username, password and domain can be set as environment variable
+* Alternatively, username, password and domain and public-URL can be set as environment variable. Keep in mind that if
+  a public-URL has been provided, this environment variable already has to be set during the build-lifecycle 
 
     ```bash
     export USERNAME=svcacct_email@domain.com
     export PASSWORD=password
     export DOMAIN=domain.com
+    export PUBLIC_URL=http://meet-easier.domain.com
     ```
 
 * In `/ui-react/src/config/flightboard.config.js`, manage your customizations:
