@@ -22,6 +22,11 @@ module.exports = function(app) {
 		});
 	});
 
+	// heartbeat-service to check if server is alive
+  app.get('/api/heartbeat', function(req, res) {
+    res.json({ status: 'OK' });
+  });
+
 	// redirects everything else to our react app
 	app.get('*', function(req, res) {
 		res.sendFile(path.join(__dirname,'../ui-react/build/','index.html'));
