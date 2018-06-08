@@ -11,5 +11,5 @@ RUN npm install --only=production
 COPY . .
 COPY --from=frontend ui-react/build/. ui-react/build/.
 
-EXPOSE 3001
+EXPOSE 8080
 CMD [ "npm", "start" ]
