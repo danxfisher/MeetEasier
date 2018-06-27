@@ -1,8 +1,8 @@
 module.exports = {
   'text' : {
-    'nextUp' : 'Next Up',
-    'statusAvailable' : 'Open',
-    'statusBusy' : 'Busy',
-    'upcomingTitle' : 'Upcoming',
+    'nextUp' : 'Nästa bokning',
+    'statusAvailable' : 'Ledig',
+    'statusBusy' : 'Bokad',
+    'upcomingTitle' : 'Kommande möten',
   }
 };

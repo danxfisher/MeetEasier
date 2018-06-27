@@ -1,22 +1,22 @@
 module.exports = {
   'board' : {
     'roomsToSkip' : [
-      'ROOM_EMAIL@DOMAIN.com'
+      'test@test.com'
     ],
     'text' : {
-      'nextUp' : 'Next Up',
-      'statusAvailable' : 'Open',
-      'statusBusy' : 'Busy',
+      'nextUp' : 'Nästa bokning',
+      'statusAvailable' : 'Ledig',
+      'statusBusy' : 'Upptagen',
     }
   },
 
   'navbar' : {
-    'title' : 'Conference Room Availability',
+    'title' : 'Mötesrumstillgänglighet',
   },
 
   'roomFilter' : {
-    'filterTitle' : 'Locations',
-    'filterAllTitle' : 'All Conference Rooms',
+    'filterTitle' : 'Rum',
+    'filterAllTitle' : 'Alla mötesrum',
   },
 
   'socket' : {
