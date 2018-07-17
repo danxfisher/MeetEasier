@@ -168,6 +168,11 @@ body {
     color: $yellow;
   }
 
+  .meeting-error {
+    font-size: 24px;
+    color: $orange;
+  }
+
   .meeting-room__name {
     font-size: 30px;
     color: $grayLightest;
@@ -205,6 +210,10 @@ body {
 
 .meeting-room-busy {
   border-left: 8px solid $red !important;
+}
+
+.meeting-room-error {
+  border-left: 8px solid $orange !important;
 }
 
 #single-room__wrap {
