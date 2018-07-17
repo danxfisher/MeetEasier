@@ -11,7 +11,7 @@ class RoomFilter extends Component {
     }
   }
 
-  componentDidMount() {
+  getRoomlist = () => {
     return fetch('/api/roomlists')
       .then((response) => response.json())
       .then((data) => {
@@ -19,13 +19,16 @@ class RoomFilter extends Component {
           response: true,
           roomlists: data
         });
-
       })
   }
 
-  filterFlightboard(e) {
+  filterFlightboard = (e) => {
     e.preventDefault();
     this.props.filter(e.target.id);
+  }
+
+  componentDidMount() {
+    this.getRoomlist();
   }
 
   render() {
@@ -34,24 +37,23 @@ class RoomFilter extends Component {
     return (
       <li>
         <a href="#" className="current-filter">
-
           {fbConfig.roomFilter.filterTitle}
-
         </a>
         <ul className="menu fb__child-dropdown">
-          <li onClick={this.filterFlightboard.bind(this)} id="roomlist-all">
-
+          <li onClick={this.filterFlightboard} id="roomlist-all">
             {fbConfig.roomFilter.filterAllTitle}
-
           </li>
+
           { response ?
-            this.state.roomlists.map(function(item, key) {
-              return (
-                <li onClick={this.filterFlightboard.bind(this)} id={'roomlist-' + item.toLowerCase().replace(/\s+/g, "-")}>{item}</li>
-              )
-            }.bind(this))
-            : <p>Loading ...</p>
+            this.state.roomlists.map((item, key) =>
+              <li onClick={this.filterFlightboard} id={'roomlist-' + item.toLowerCase().replace(/\s+/g, "-")}>
+                {item}
+              </li>
+            )
+          :
+            <p>Loading ...</p>
           }
+
         </ul>
       </li>
     );
