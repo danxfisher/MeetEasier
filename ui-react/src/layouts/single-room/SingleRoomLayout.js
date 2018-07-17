@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Display from '../../components/single-room/display/Display';
-import NotFound from '../../components/global/not-found/NotFound';
+import Display from '../../components/single-room/Display';
+import NotFound from '../../components/global/NotFound';
 
 class SingleRoomLayout extends Component {
   constructor(props) {

@@ -6,7 +6,7 @@ import './index.css';
 
 import FlightboardLayout from './layouts/flightboard/FlightboardLayout';
 import SingleRoomLayout from './layouts/single-room/SingleRoomLayout';
-import NotFound from './components/global/not-found/NotFound';
+import NotFound from './components/global/NotFound';
 
 //import registerServiceWorker from './registerServiceWorker';
 

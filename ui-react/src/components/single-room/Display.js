@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import Clock from '../clock/Clock.js';
-import Socket from '../../global/socket/Socket';
+import Clock from './Clock.js';
+import Socket from '../global/Socket';
 
-let srConfig = require('../../../config/singleRoom.config.js');
+let srConfig = require('../../config/singleRoom.config.js');
 
 class Display extends Component {
   constructor(props) {

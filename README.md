@@ -20,6 +20,16 @@ In the event of wanting to commercially distribute a closed source modification 
 
 ## Updates
 
+* v0.3
+  * Cleaned up unnecessarily nested component folder structure
+  * #8 - add script-shortcuts to `package.json` in root
+  * #9 - support environment-variables for authentication and port configuration
+  * #10 - create shrinkwraps for npm-dependencies
+  * #11 - add `.editorconfig`
+  * #12 - pass error (while fetching appointments), to frontend
+  * #13 - set engine-requirements
+  * #14 - add heartbeat-endpoint, to check if server is alive (for monitoring)
+  * #15 - add '.nvmrc'
 * v0.2
   * Changed domain to accept more than just ".com" extension
   * Changed `ui-react/config/flightboard.config.js` to handle all text so that the application can be multilingual
@@ -97,20 +107,20 @@ There are three main directories in the `ui-react/src/` folder:
 
 #### components/flightboard/
 
-* `board/` : Actual flightboard component itself
-* `clock/` : Clock component for the upper right hand of the display
-* `navbar/` : Top navigation/title bar piece
-* `room-filter/` : Room list filter in the navbar
+* `Board` : Actual flightboard component itself
+* `Clock` : Clock component for the upper right hand of the display
+* `Navbar` : Top navigation/title bar piece
+* `RoomFilter` : Room list filter in the navbar
 
 #### components/global/
 
-* `not-found/` : A "not found" page if an error or "404" occurs
-* `socket/` : A service component to run the web socket connection for updating the flightboard and single room display
+* `NotFound` : A "not found" page if an error or "404" occurs
+* `Socket` : A service component to run the web socket connection for updating the flightboard and single room display
 
 #### components/single-room/
 
-* `clock/` : Clock component for the upper right hand of the display
-* `display/` : All other features of the single room display
+* `Clock` : Clock component for the upper right hand of the display
+* `Display` : All other features of the single room display
 
 ### Config
 

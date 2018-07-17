@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Flightboard from '../../components/flightboard/board/Flightboard';
-import Navbar from '../../components/flightboard/navbar/Navbar';
+import Flightboard from '../../components/flightboard/Flightboard';
+import Navbar from '../../components/flightboard/Navbar';
 
 class FlightboardTemplate extends Component {
   constructor(props) {
