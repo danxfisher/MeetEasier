@@ -1,0 +1,10 @@
+# http://editorconfig.org
+
+root = true
+
+[*]
+charset = utf-8
+
+[*.{js,html,css,scss,json,yml}]
+indent_style = space
+indent_size = 2
