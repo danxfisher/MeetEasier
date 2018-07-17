@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-let fbConfig = require('../../../config/flightboard.config.js');
+let fbConfig = require('../../config/flightboard.config.js');
 
 class RoomFilter extends Component {
   constructor(props) {

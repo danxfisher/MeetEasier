@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import Clock from '../clock/Clock';
-import RoomFilter from '../room-filter/RoomFilter';
+import Clock from './Clock';
+import RoomFilter from './RoomFilter';
 
-let fbConfig = require('../../../config/flightboard.config.js');
+let fbConfig = require('../../config/flightboard.config.js');
 
 class Navbar extends Component {
 

@@ -97,20 +97,20 @@ There are three main directories in the `ui-react/src/` folder:
 
 #### components/flightboard/
 
-* `board/` : Actual flightboard component itself
-* `clock/` : Clock component for the upper right hand of the display
-* `navbar/` : Top navigation/title bar piece
-* `room-filter/` : Room list filter in the navbar
+* `Board` : Actual flightboard component itself
+* `Clock` : Clock component for the upper right hand of the display
+* `Navbar` : Top navigation/title bar piece
+* `RoomFilter` : Room list filter in the navbar
 
 #### components/global/
 
-* `not-found/` : A "not found" page if an error or "404" occurs
-* `socket/` : A service component to run the web socket connection for updating the flightboard and single room display
+* `NotFound` : A "not found" page if an error or "404" occurs
+* `Socket` : A service component to run the web socket connection for updating the flightboard and single room display
 
 #### components/single-room/
 
-* `clock/` : Clock component for the upper right hand of the display
-* `display/` : All other features of the single room display
+* `Clock` : Clock component for the upper right hand of the display
+* `Display` : All other features of the single room display
 
 ### Config
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import socketIOClient from 'socket.io-client';
 
-let fbConfig = require('../../../config/flightboard.config.js');
+let fbConfig = require('../../config/flightboard.config.js');
 
 class Socket extends Component {
   constructor(props) {

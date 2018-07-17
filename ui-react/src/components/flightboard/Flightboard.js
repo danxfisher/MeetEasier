@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Socket from '../../global/socket/Socket';
+import Socket from '../global/Socket';
 
-let fbConfig = require('../../../config/flightboard.config.js');
+let fbConfig = require('../../config/flightboard.config.js');
 
 class Flightboard extends Component {
   constructor(props) {

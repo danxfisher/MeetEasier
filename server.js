@@ -13,8 +13,8 @@ app.use(express.static(`${__dirname}/ui-react/build`));
 require('./app/routes.js')(app);
 
 // launch ======================================================================
-//const port = process.env.PORT || 3001;
 const port = process.env.PORT || 8080;
+
 var theserver = app.listen(port, function(){
 	// call controller functions -------------------------------------------------
 	var io = require('socket.io').listen(theserver);
