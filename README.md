@@ -20,6 +20,16 @@ In the event of wanting to commercially distribute a closed source modification 
 
 ## Updates
 
+* v0.3
+  * Cleaned up unnecessarily nested component folder structure
+  * #8 - add script-shortcuts to `package.json` in root
+  * #9 - support environment-variables for authentication and port configuration
+  * #10 - create shrinkwraps for npm-dependencies
+  * #11 - add `.editorconfig`
+  * #12 - pass error (while fetching appointments), to frontend
+  * #13 - set engine-requirements
+  * #14 - add heartbeat-endpoint, to check if server is alive (for monitoring)
+  * #15 - add '.nvmrc'
 * v0.2
   * Changed domain to accept more than just ".com" extension
   * Changed `ui-react/config/flightboard.config.js` to handle all text so that the application can be multilingual
