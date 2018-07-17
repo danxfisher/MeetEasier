@@ -6,47 +6,62 @@ let fbConfig = require('../../config/flightboard.config.js');
 class FlightboardRow extends Component {
   constructor(props) {
     super(props);
-    this.state ={};
+    this.state = {
+      nextUp: '',
+      timesPresent: false,
+      skippedRoom: false
+    }
   }
 
-  render() {
+  getAppointmentTime = () => {
     const { item, now } = this.props;
-
-    const styles = {
-      show: {
-        display: 'block'
-      },
-      hide: {
-        display: 'none'
-      },
-      flex: {
-        display: 'flex'
-      }
-    }
-
-    let nextUp = '';
-    let timesPresent = false;
-    let skippedRoom = false;
-    const room = item.Name.toLowerCase().replace(/\s+/g, "-");
-    const roomlist = 'roomlist-' + item.Roomlist.toLowerCase().replace(/\s+/g, "-");
-
-    fbConfig.board.roomsToSkip.forEach(function(configItem, configKey) {
-      // do stuff
-      if(configItem === item.Email) {
-        skippedRoom = true;
-      }
-    });
 
     // check if there are times in the item.Start & item.End
     // then: if the meeting is not going on now, append "Next Up: "
     if (typeof item.Appointments !== 'undefined' && item.Appointments.length > 0) {
       if (item.Appointments[0].Start && item.Appointments[0].End) {
-        timesPresent = true;
+        this.setState({
+          timesPresent: true
+        });
         if (item.Appointments[0].Start < now && now < item.Appointments[0].End) { } else {
-          nextUp = fbConfig.board.text.nextUp + ': ';
+          this.setState({
+            nextUp: fbConfig.board.text.nextUp + ': '
+          });
         }
       }
     }
+  }
+
+  isRoomSkipped = () => {
+    const { item } = this.props;
+
+    fbConfig.board.roomsToSkip.forEach(function(configItem, configKey) {
+      if(configItem === item.Email) {
+        this.setState({
+          skippedRoom: true
+        });
+      }
+    });
+  }
+
+  componentDidMount = () => {
+    this.isRoomSkipped();
+    this.getAppointmentTime();
+  }
+
+  render() {
+    const { nextUp, skippedRoom, timesPresent } = this.state;
+    const { item, now } = this.props;
+
+    const styles = {
+      show: {display: 'block'},
+      hide: {display: 'none'},
+      flex: {display: 'flex'}
+    }
+
+    const room = item.Name.toLowerCase().replace(/\s+/g, "-");
+    const roomlist = 'roomlist-' + item.Roomlist.toLowerCase().replace(/\s+/g, "-");
+
     // if the room needs to be skipped, return null
     if (!skippedRoom) {
       let meetingRoomClass = `${ room } meeting-room ${ item.Busy ? 'meeting-room-busy' : '' }`;
@@ -64,7 +79,6 @@ class FlightboardRow extends Component {
           : fbConfig.board.text.statusAvailable;
 
       return (
-
         <div className={'row-padder ' + roomlist} style={this.props.filter === roomlist || this.props.filter === 'roomlist-all' || this.props.filter === '' ? styles.show : styles.hide}>
           <div className="row">
             <div className="medium-12 columns">
@@ -82,16 +96,16 @@ class FlightboardRow extends Component {
                   </div>
                   <div className="medium-6 columns">
                     <div className={room + '-meeting-information'}>
-                        {timesPresent && item.Appointments[0].End >= now &&
-                          <div>
-                            <span className={room + '-meeting-upcoming meeting-upcoming'}>
-                              {nextUp}
-                            </span>
-                            <span className={room + '-subject meeting-subject'}>
-                              {item.Appointments[0].Subject}
-                            </span>
-                          </div>
-                        }
+                      {timesPresent && item.Appointments[0].End >= now &&
+                        <div>
+                          <span className={room + '-meeting-upcoming meeting-upcoming'}>
+                            {nextUp}
+                          </span>
+                          <span className={room + '-subject meeting-subject'}>
+                            {item.Appointments[0].Subject}
+                          </span>
+                        </div>
+                      }
                     </div>
                     <div className={room + '-time meeting-time'}>
                       {timesPresent ?
@@ -119,7 +133,6 @@ class FlightboardRow extends Component {
             </div>
           </div>
         </div>
-
       )
     }
   }
