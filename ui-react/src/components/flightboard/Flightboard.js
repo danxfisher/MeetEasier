@@ -33,7 +33,7 @@ class Flightboard extends Component {
     })
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.getRoomData();
   }
 
