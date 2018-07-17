@@ -136,7 +136,6 @@ class FlightboardRow extends Component {
       )
     }
   }
-
 }
 
 export default FlightboardRow;
