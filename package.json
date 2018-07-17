@@ -1,6 +1,10 @@
 {
   "name": "flighttracker",
   "main": "server.js",
+  "engines": {
+    "node": ">=6.0.0",
+    "npm": ">=3.0.0"
+  },
   "scripts": {
     "postinstall": "cd ui-react && npm install",
     "build": "cd ui-react && npm run build",
