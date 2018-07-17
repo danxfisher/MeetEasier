@@ -1,6 +1,12 @@
 {
   "name": "flighttracker",
   "main": "server.js",
+  "scripts": {
+    "postinstall": "cd ui-react && npm install",
+    "build": "cd ui-react && npm run build",
+    "start": "node server",
+    "start-ui-dev": "cd ui-react && npm start"
+  },
   "dependencies": {
     "ews-javascript-api": "^0.8.0",
     "express": "^4.16.2",
