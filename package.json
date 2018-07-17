@@ -1,5 +1,5 @@
 {
-  "name": "flighttracker",
+  "name": "meet-easier",
   "main": "server.js",
   "engines": {
     "node": ">=6.0.0",
