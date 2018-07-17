@@ -22,14 +22,14 @@ In the event of wanting to commercially distribute a closed source modification 
 
 * v0.3
   * Cleaned up unnecessarily nested component folder structure
-  * #8 - add script-shortcuts to `package.json` in root
-  * #9 - support environment-variables for authentication and port configuration
-  * #10 - create shrinkwraps for npm-dependencies
-  * #11 - add `.editorconfig`
-  * #12 - pass error (while fetching appointments), to frontend
-  * #13 - set engine-requirements
-  * #14 - add heartbeat-endpoint, to check if server is alive (for monitoring)
-  * #15 - add '.nvmrc'
+  * [#8](https://github.com/danxfisher/MeetEasier/pull/8) - add script-shortcuts to `package.json` in root
+  * [#9](https://github.com/danxfisher/MeetEasier/pull/9) - support environment-variables for authentication and port configuration
+  * [#10](https://github.com/danxfisher/MeetEasier/pull/10) - create shrinkwraps for npm-dependencies
+  * [#11](https://github.com/danxfisher/MeetEasier/pull/11) - add `.editorconfig`
+  * [#12](https://github.com/danxfisher/MeetEasier/pull/12) - pass error (while fetching appointments), to frontend
+  * [#13](https://github.com/danxfisher/MeetEasier/pull/13) - set engine-requirements
+  * [#14](https://github.com/danxfisher/MeetEasier/pull/14) - add heartbeat-endpoint, to check if server is alive (for monitoring)
+  * [#15](https://github.com/danxfisher/MeetEasier/pull/15) - add '.nvmrc'
 * v0.2
   * Changed domain to accept more than just ".com" extension
   * Changed `ui-react/config/flightboard.config.js` to handle all text so that the application can be multilingual
