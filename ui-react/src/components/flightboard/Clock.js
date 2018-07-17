@@ -8,21 +8,21 @@ class Clock extends Component {
     }
   }
 
-  componentDidMount() {
+  tick = () => {
+    this.setState ({
+      date: new Date()
+    })
+  }
+
+  componentDidMount = () => {
     this.timerID = setInterval(
       () => this.tick(),
       1000
     );
   }
 
-  componentWillUnmount() {
+  componentWillUnmount = () => {
     clearInterval(this.timerID);
-  }
-
-  tick() {
-    this.setState ({
-      date: new Date()
-    })
   }
 
   render() {

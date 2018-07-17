@@ -11,7 +11,7 @@ class FlightboardTemplate extends Component {
     }
   }
 
-  handleFilter(filterValue) {
+  handleFilter = (filterValue) => {
     this.setState({
       filter: filterValue
     });
@@ -20,7 +20,7 @@ class FlightboardTemplate extends Component {
   render () {
     return (
       <div id="page-wrap">
-        <Navbar filter={this.handleFilter.bind(this)}/>
+        <Navbar filter={this.handleFilter}/>
         <Flightboard filter={this.state.filter}/>
       </div>
     )
