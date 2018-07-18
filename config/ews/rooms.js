@@ -3,6 +3,7 @@ module.exports = function (callback) {
   // modules -------------------------------------------------------------------
   var ews = require("ews-javascript-api");
   var auth = require("../auth.js");
+  var blacklist = require("../room-blacklist.js");
 
   // ews -----------------------------------------------------------------------
   var exch = new ews.ExchangeService(ews.ExchangeVersion.Exchange2016);
@@ -30,22 +31,28 @@ module.exports = function (callback) {
       roomLists.forEach(function (item, i, array) {
         exch.GetRooms(new ews.Mailbox(item.Address)).then((rooms) => {
           rooms.forEach(function (roomItem, roomIndex, roomsArray) {
-            var room = {};
+            let room = {};
+
 
             // if the email addresses != your corporate domain,
             // replace email domain with domain
-            var email = roomItem.Address;
+            let email = roomItem.Address;
             email = email.substring(0, email.indexOf('@'));
             email = email + '@' + auth.domain;
 
-            var roomAlias = roomItem.Name.toLowerCase().replace(/\s+/g, "-");
+            // use either email var or roomItem.Address - depending on your use case
+            let inBlacklist = isRoomInBlacklist(email);
 
-            room.Roomlist = item.Name;
-            room.Name = roomItem.Name;
-            room.RoomAlias = roomAlias;
-            room.Email = email;
-            roomAddresses.push(room);
+            // if not in blacklist, proceed as normal; otherwise, skip
+            if (!inBlacklist) {
+              let roomAlias = roomItem.Name.toLowerCase().replace(/\s+/g, "-");
 
+              room.Roomlist = item.Name;
+              room.Name = roomItem.Name;
+              room.RoomAlias = roomAlias;
+              room.Email = email;
+              roomAddresses.push(room);
+            }
           });
           counter++;
 
@@ -107,13 +114,18 @@ module.exports = function (callback) {
           fillRoomData(context, room, response.Items);
         }, (error) => {
           // handle the error here
-//          callback(error, null);
+          // callback(error, null);
           fillRoomData(context, room, undefined, { errorMessage: error.response.errorMessage });
         });
       });
     });
     return promise;
   };
+
+  // check if room is in blacklist
+  function isRoomInBlacklist(email) {
+    return blacklist.roomEmails.includes(email);
+  }
 
   // do all of the process for the appointment times
   function processTime(appointmentTime) {
@@ -136,13 +148,12 @@ module.exports = function (callback) {
     return 0; //default return value (no sorting)
   }
 
+
+  // perform promise chain to get rooms
   getListOfRooms()
   .then(getRoomsInLists)
   .then(getAppointmentsForRooms)
   .then(function(rooms){
       callback(null, rooms);
   });
-
-
-
 };
