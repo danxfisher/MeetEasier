@@ -21,7 +21,7 @@ In the event of wanting to commercially distribute a closed source modification 
 ## Updates
 
 * v0.3.1
-  * Removed skipped rooms/room blacklist filtering from front end to back end.
+  * Removed skipped rooms/room blacklist filtering from front end and added to back end.
 * v0.3
   * Cleaned up unnecessarily nested component folder structure
   * [#8](https://github.com/danxfisher/MeetEasier/pull/8) - add script-shortcuts to `package.json` in root
