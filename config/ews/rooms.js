@@ -31,20 +31,19 @@ module.exports = function (callback) {
       roomLists.forEach(function (item, i, array) {
         exch.GetRooms(new ews.Mailbox(item.Address)).then((rooms) => {
           rooms.forEach(function (roomItem, roomIndex, roomsArray) {
-            let room = {};
-
-
-            // if the email addresses != your corporate domain,
-            // replace email domain with domain
-            let email = roomItem.Address;
-            email = email.substring(0, email.indexOf('@'));
-            email = email + '@' + auth.domain;
-
             // use either email var or roomItem.Address - depending on your use case
-            let inBlacklist = isRoomInBlacklist(email);
+            let inBlacklist = isRoomInBlacklist(roomItem.Address);
 
             // if not in blacklist, proceed as normal; otherwise, skip
             if (!inBlacklist) {
+              let room = {};
+
+              // if the email addresses != your corporate domain,
+              // replace email domain with domain
+              let email = roomItem.Address;
+              email = email.substring(0, email.indexOf('@'));
+              email = email + '@' + auth.domain;
+
               let roomAlias = roomItem.Name.toLowerCase().replace(/\s+/g, "-");
 
               room.Roomlist = item.Name;
