@@ -1,8 +1,5 @@
 module.exports = {
   'board' : {
-    'roomsToSkip' : [
-      'ROOM_EMAIL@DOMAIN.com'
-    ],
     'text' : {
       'nextUp' : 'Next Up',
       'statusAvailable' : 'Open',

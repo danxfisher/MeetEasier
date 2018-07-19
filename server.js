@@ -20,8 +20,8 @@ var theserver = app.listen(port, function(){
 	var io = require('socket.io').listen(theserver);
 
 	// controller if using room lists
-	var controller = require('./config/controller.js')(io);
+	var controller = require('./app/socket-controller.js')(io);
 
 	// log something so we know the server is working correctly
-	console.log('now we are cooking.');
+	console.log(`now we're cooking.`);
 });

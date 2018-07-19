@@ -20,6 +20,8 @@ In the event of wanting to commercially distribute a closed source modification 
 
 ## Updates
 
+* v0.3.1
+  * Removed skipped rooms/room blacklist filtering from front end to back end.
 * v0.3
   * Cleaned up unnecessarily nested component folder structure
   * [#8](https://github.com/danxfisher/MeetEasier/pull/8) - add script-shortcuts to `package.json` in root
@@ -163,13 +165,27 @@ There are three main directories in the `ui-react/src/` folder:
 
     ```javascript
     module.exports = {
+      'board' : {
+        'text' : {
+          'nextUp' : 'Next Up',
+          'statusAvailable' : 'Open',
+          'statusBusy' : 'Busy',
+          'statusError' : 'Error'
+        }
+      },
+
+      'navbar' : {
         'title' : 'Conference Room Availability',
+      },
+
+      'roomFilter' : {
         'filterTitle' : 'Locations',
         'filterAllTitle' : 'All Conference Rooms',
-        'roomsToSkip' : [
-          'ROOM_EMAIL@DOMAIN.COM'
-        ],
-        'socketEndpoint' : 'http://localhost:8080'
+      },
+
+      'socket' : {
+        'endpoint' : 'http://localhost:8080',
+      }
     };
     ```
 
@@ -181,7 +197,7 @@ There are three main directories in the `ui-react/src/` folder:
 * To change the interval in which the web socket emits, edit the interval time in `config/controller.js`.  By default, it is set to 1 minute.
 * To update styles, make sure you install grunt first with `npm install -g grunt-cli`.  Then run `grunt` in the root directory to watch for SCSS changes.  Use the `.scss` files located in the `/scss` folder.
   * All React components can be locally styled by adding a new `.css` file and importing it into the component itself if you'd prefer to do it that way.
-* In `config/ews/rooms.js`, there is a block of code on lines 37-39 that may not be necessary but were added as a convenience.  Feel free to use it, comment it out, or remove it completely.  It was designed for a use case where the email addresses (ex: jsmith@domain.com) do not match the corporate domain (ex: jsmith-enterprise).
+* In `config/ews/rooms.js`, there is a block of code that may not be necessary but were added as a convenience.  Feel free to use it, comment it out, or remove it completely.  It was designed for a use case where the email addresses (ex: jsmith@domain.com) do not match the corporate domain (ex: jsmith-enterprise).
     ```javascript
     // if the email domain != your corporate domain,
     // replace email domain with domain from auth config
