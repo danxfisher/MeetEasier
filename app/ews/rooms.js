@@ -2,8 +2,8 @@ module.exports = function (callback) {
 
   // modules -------------------------------------------------------------------
   var ews = require("ews-javascript-api");
-  var auth = require("../auth.js");
-  var blacklist = require("./room-blacklist.js");
+  var auth = require("../../config/auth.js");
+  var blacklist = require("../../config/room-blacklist.js");
 
   // ews -----------------------------------------------------------------------
   var exch = new ews.ExchangeService(ews.ExchangeVersion.Exchange2016);

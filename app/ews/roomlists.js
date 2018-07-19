@@ -2,7 +2,7 @@ module.exports = function (callback) {
 
   // modules -------------------------------------------------------------------
   var ews = require("ews-javascript-api");
-  var auth = require("../auth.js");
+  var auth = require("../../config/auth.js");
 
   // ews -----------------------------------------------------------------------
   var exch = new ews.ExchangeService(ews.ExchangeVersion.Exchange2016);
