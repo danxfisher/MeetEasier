@@ -18,6 +18,6 @@ module.exports = {
   },
 
   'socket' : {
-    'endpoint' : 'http://localhost:8080',
+    'endpoint' : `${process.env.PUBLIC_URL || 'http://localhost:8080'}`,
   }
 };
