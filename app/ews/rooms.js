@@ -19,7 +19,7 @@ module.exports = function (callback) {
         resolve(roomLists);
       }, (err) => {
         callback(err, null);
-      };
+      });
     })
     return promise;
   };
