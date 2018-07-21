@@ -17,7 +17,9 @@ module.exports = function (callback) {
       exch.GetRoomLists().then((lists) => {
         var roomLists = lists.items;
         resolve(roomLists);
-      });
+      }, (err) => {
+        callback(err, null);
+      };
     })
     return promise;
   };

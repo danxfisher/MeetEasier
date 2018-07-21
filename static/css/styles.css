@@ -17,6 +17,9 @@ body {
   color: #ffffff;
   background-color: #191919; }
 
+.credentials-error {
+  text-align: center; }
+
 #fb__spinner-wrap {
   text-align: center; }
   #fb__spinner-wrap #fb__spinner {

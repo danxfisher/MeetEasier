@@ -8,7 +8,17 @@ module.exports = function(app) {
 		var ews = require('./ews/rooms.js');
 
 		ews(function(err, rooms) {
-			res.json(rooms);
+			if (err) {
+				if (err.responseCode === 127) {
+					res.json({error: 'Oops, there seems to be an issue with the credentials you have supplied.  Make sure you type them correctly and that you have access to Exchange Roomlists.'});
+				}
+				else {
+					res.json({error: 'Hmm, there seems to be a weird issue occuring.'});
+				}
+			}
+			else {
+				res.json(rooms);
+			}
 		});
 	});
 
@@ -18,7 +28,17 @@ module.exports = function(app) {
 		var ews = require('./ews/roomlists.js');
 
 		ews(function(err, roomlists) {
-			res.json(roomlists);
+			if (err) {
+				if (err.responseCode === 127) {
+					res.json({error: 'Oops, there seems to be an issue with the credentials you have supplied.  Make sure you type them correctly and that you have access to Exchange Roomlists.'});
+				}
+				else {
+					res.json({error: 'Hmm, there seems to be a weird issue occuring.'});
+				}
+			}
+			else {
+				res.json(roomlists);
+			}
 		});
 	});
 

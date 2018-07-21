@@ -17,6 +17,8 @@ module.exports = function (callback) {
       roomLists.push(item.Name);
     });
     callback(null, roomLists.sort());
+  }, (err) => {
+    callback(err, null);
   });
 
 };
