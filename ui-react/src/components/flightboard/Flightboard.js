@@ -55,7 +55,7 @@ class Flightboard extends Component {
       <div className="tracker-wrap">
         <Socket response={this.handleSocket} />
 
-        { response && !error ?
+        { response ?
           (!error ?
             rooms.map((room, key) =>
               <FlightboardRow item={room} now={now} key={key} filter={this.props.filter} />
