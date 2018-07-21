@@ -4,6 +4,9 @@
 ### To Do:
 * [ ] - Handle Socket error (ERR CONNECTION REFUSED)
 * [ ] - Update Wiki
+* [ ] - update to es6
+* [ ] - add better comments
+* [ ] - Jest/Cypress for Unit/Integration/Functional testing
 
 ### Icebox:
 * [ ] - Add Room Booking component/feature
