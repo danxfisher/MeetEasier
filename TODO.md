@@ -2,12 +2,15 @@
 ## Last updated: 07.18.2018
 
 ### To Do:
-* [ ] - Handle credentials error
-* [ ] - Handle room list error ('no folder in store')
+* [ ] - Handle Socket error (ERR CONNECTION REFUSED)
+* [ ] - Update Wiki
+* [ ] - update to es6
+* [ ] - add better comments
+* [ ] - Jest/Cypress for Unit/Integration/Functional testing
 
 ### Icebox:
 * [ ] - Add Room Booking component/feature
-* [ ] - Oauth
+* [ ] - OAuth
 
 ### Done:
 * [x] - Test on multiple mobile devices
@@ -15,3 +18,4 @@
 * [x] - Make "Next Up", "Open", "Busy", "Upcoming", etc. all customizable as to enable multilingual support
 * [x] - Look into port issues
 * [x] - Change domain so it can be .com, .co.uk, etc
+* [x] - Handle credentials error

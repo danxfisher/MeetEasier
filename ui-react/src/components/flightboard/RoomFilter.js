@@ -7,6 +7,7 @@ class RoomFilter extends Component {
     super(props);
     this.state = {
       response: false,
+      error: false,
       roomlists: []
     }
   }
@@ -15,10 +16,20 @@ class RoomFilter extends Component {
     return fetch('/api/roomlists')
       .then((response) => response.json())
       .then((data) => {
-        this.setState({
-          response: true,
-          roomlists: data
-        });
+        if(!data.error){
+          this.setState({
+            response: true,
+            error: false,
+            roomlists: data
+          });
+        }
+        else {
+          this.setState({
+            response: true,
+            error: true,
+            roomlists: data
+          });
+        }
       })
   }
 
@@ -32,7 +43,7 @@ class RoomFilter extends Component {
   }
 
   render() {
-    const { response } = this.state;
+    const { error, response } = this.state;
 
     return (
       <li>
@@ -44,7 +55,7 @@ class RoomFilter extends Component {
             {fbConfig.roomFilter.filterAllTitle}
           </li>
 
-          { response ?
+          { response && !error ?
             this.state.roomlists.map((item, key) =>
               <li onClick={this.filterFlightboard} id={'roomlist-' + item.toLowerCase().replace(/\s+/g, "-")}>
                 {item}

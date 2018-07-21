@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-
 import socketIOClient from 'socket.io-client';
-
-let fbConfig = require('../../config/flightboard.config.js');
 
 class Socket extends Component {
   constructor(props) {
@@ -10,54 +7,35 @@ class Socket extends Component {
     this.state = {
       response: false,
       now: new Date(),
-      rooms: [],
-      endpoint: fbConfig.socket.endpoint
+      rooms: []
     }
   }
 
-  componentDidMount() {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
-
-    console.log("socket connect at: " + endpoint);
-    console.log("=====================================");
+  componentDidMount = () => {
+    const socket = socketIOClient();
 
     socket.on('updatedRooms', (rooms) => {
       let time = new Date();
-      for (var i = 0; i < rooms.length; i++) {
-        var meetingRoom = rooms[i].Name;
-        console.log("updating: " + meetingRoom);
+      for (let i = 0; i < rooms.length; i++) {
+        let meetingRoom = rooms[i].Name;
       }
-      console.log(" ");
-      console.log("time: " + time.toLocaleTimeString());
-      console.log("=====================================");
 
       this.props.response({
         response: true,
         now: new Date(),
         rooms: rooms
-      })
-
-      this.setState({
-        response: true,
-        now: new Date(),
-        rooms: rooms
       });
     });
-
   }
 
-  componentWillUnmount () {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
+  componentWillUnmount = () => {
+    const socket = socketIOClient();
     socket.close();
   }
-
 
   render() {
     return null;
   }
-
 }
 
 export default Socket;

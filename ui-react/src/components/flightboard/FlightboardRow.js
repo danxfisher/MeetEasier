@@ -24,7 +24,7 @@ class FlightboardRow extends Component {
         });
         if (item.Appointments[0].Start < now && now < item.Appointments[0].End) { } else {
           this.setState({
-            nextUp: fbConfig.board.text.nextUp + ': '
+            nextUp: fbConfig.board.nextUp + ': '
           });
         }
       }
@@ -58,10 +58,10 @@ class FlightboardRow extends Component {
         ? 'meeting-busy'
         : 'meeting-open';
     let statusText = item.ErrorMessage
-      ? fbConfig.board.text.statusError
+      ? fbConfig.board.statusError
       : item.Busy
-        ? fbConfig.board.text.statusBusy
-        : fbConfig.board.text.statusAvailable;
+        ? fbConfig.board.statusBusy
+        : fbConfig.board.statusAvailable;
 
     return (
       <div className={'row-padder ' + roomlist} style={this.props.filter === roomlist || this.props.filter === 'roomlist-all' || this.props.filter === '' ? styles.show : styles.hide}>

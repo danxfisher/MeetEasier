@@ -9,6 +9,7 @@ class Flightboard extends Component {
     super(props);
     this.state = {
       response: false,
+      error: false,
       now: new Date(),
       rooms: []
     }
@@ -18,10 +19,20 @@ class Flightboard extends Component {
     return fetch('/api/rooms')
       .then((response) => response.json())
       .then((data) => {
-        this.setState({
-          response: true,
-          rooms: data
-        });
+        if(!data.error){
+          this.setState({
+            response: true,
+            error: false,
+            rooms: data
+          });
+        }
+        else {
+          this.setState({
+            response: true,
+            error: true,
+            rooms: data
+          });
+        }
       })
   }
 
@@ -38,15 +49,21 @@ class Flightboard extends Component {
   }
 
   render() {
-    const { response, now } = this.state;
+    const { error, now, response, rooms } = this.state;
 
     return (
       <div className="tracker-wrap">
         <Socket response={this.handleSocket} />
 
         { response ?
-          this.state.rooms.map((room, key) =>
-            <FlightboardRow item={room} now={now} key={key} filter={this.props.filter} />
+          (!error ?
+            rooms.map((room, key) =>
+              <FlightboardRow item={room} now={now} key={key} filter={this.props.filter} />
+            )
+          :
+            <div className="container">
+              <div className="credentials-error">{rooms.error}</div>
+            </div>
           )
         :
           <Spinner />

@@ -63,20 +63,15 @@ This application assumes you have:
     ```
     $ npm install
     ```
-3. Navigate to `ui-react/`. In the `package.json` file, change:
-    ```
-    "proxy" : "http://localhost:8080"
-    ```
-    to whatever the IP of where express is running.  Typically you can use something similar to the default but you can change the IP and port as long as it coincides with what is in `server.js`.
-4. In the root directory, open a terminal or cmd:
+3. In the root directory, open a terminal or cmd:
     ```
     $ npm run build
     ```
-5. In the root directory, open a terminal or cmd:
+4. In the root directory, open a terminal or cmd:
     ```
     $ npm start
     ```
-6. If you want to start the react development server, in the root directory run:
+5. If you want to start the react development server, in the root directory run:
     ```
     $ npm start-ui-dev
     ```
@@ -86,7 +81,8 @@ This application assumes you have:
 ## Root Folder Structure Explained
 
 * `app/` : Routes for EWS APIs
-* `config/` : All EWS functionality
+* `app/ews/` : All EWS functionality
+* `confg/` : All server side configuration settings
 * `scss/` : All styles
 * `static/` : All global static files
 * `ui-react/` : Front end React routes and components
@@ -161,17 +157,25 @@ There are three main directories in the `ui-react/src/` folder:
     export DOMAIN=domain.com
     ```
 
+* In `/config/room-blacklist.js`, add any room by email to exclude it from the list of rooms:
+
+    ```javascript
+      module.exports = {
+        'roomEmails' : [
+          'ROOM_EMAIL@DOMAIN.com'
+        ]
+      };
+    ```
+
 * In `/ui-react/src/config/flightboard.config.js`, manage your customizations:
 
     ```javascript
     module.exports = {
       'board' : {
-        'text' : {
-          'nextUp' : 'Next Up',
-          'statusAvailable' : 'Open',
-          'statusBusy' : 'Busy',
-          'statusError' : 'Error'
-        }
+        'nextUp' : 'Next Up',
+        'statusAvailable' : 'Open',
+        'statusBusy' : 'Busy',
+        'statusError' : 'Error'
       },
 
       'navbar' : {
@@ -182,10 +186,6 @@ There are three main directories in the `ui-react/src/` folder:
         'filterTitle' : 'Locations',
         'filterAllTitle' : 'All Conference Rooms',
       },
-
-      'socket' : {
-        'endpoint' : 'http://localhost:8080',
-      }
     };
     ```
 
@@ -193,11 +193,11 @@ There are three main directories in the `ui-react/src/` folder:
 
 ### Advanced
 
-* All EWS functionality is located in `config/ews`.
-* To change the interval in which the web socket emits, edit the interval time in `config/controller.js`.  By default, it is set to 1 minute.
+* All EWS functionality is located in `app/ews`.
+* To change the interval in which the web socket emits, edit the interval time in `app/socket-controller.js`.  By default, it is set to 1 minute.
 * To update styles, make sure you install grunt first with `npm install -g grunt-cli`.  Then run `grunt` in the root directory to watch for SCSS changes.  Use the `.scss` files located in the `/scss` folder.
   * All React components can be locally styled by adding a new `.css` file and importing it into the component itself if you'd prefer to do it that way.
-* In `config/ews/rooms.js`, there is a block of code that may not be necessary but were added as a convenience.  Feel free to use it, comment it out, or remove it completely.  It was designed for a use case where the email addresses (ex: jsmith@domain.com) do not match the corporate domain (ex: jsmith-enterprise).
+* In `app/ews/rooms.js`, there is a block of code that may not be necessary but were added as a convenience.  Feel free to use it, comment it out, or remove it completely.  It was designed for a use case where the email addresses (ex: jsmith@domain.com) do not match the corporate domain (ex: jsmith-enterprise).
     ```javascript
     // if the email domain != your corporate domain,
     // replace email domain with domain from auth config
