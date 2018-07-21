@@ -20,6 +20,8 @@ In the event of wanting to commercially distribute a closed source modification 
 
 ## Updates
 
+* v0.3.3
+ * [#18](https://github.com/danxfisher/MeetEasier/pull/15) - use localized sort for rooms
 * v0.3.2
   * Added additional error handling for incorrect credentials.  The error will now be shown on the front end.
   * Updated the socket component to stop most ERR_CONNECTION_REFSUED errors from happening.
