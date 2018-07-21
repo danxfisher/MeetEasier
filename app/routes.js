@@ -10,7 +10,7 @@ module.exports = function(app) {
 		ews(function(err, rooms) {
 			if (err) {
 				if (err.responseCode === 127) {
-					res.json({error: 'Oops, there seems to be an issue with the credentials you have supplied.  Make sure you type them correctly and that you have access to Exchange Roomlists.'});
+					res.json({error: 'Oops, there seems to be an issue with the credentials you have supplied.  Make sure you typed them correctly and that you have access to Exchange Roomlists.'});
 				}
 				else {
 					res.json({error: 'Hmm, there seems to be a weird issue occuring.'});
@@ -30,7 +30,7 @@ module.exports = function(app) {
 		ews(function(err, roomlists) {
 			if (err) {
 				if (err.responseCode === 127) {
-					res.json({error: 'Oops, there seems to be an issue with the credentials you have supplied.  Make sure you type them correctly and that you have access to Exchange Roomlists.'});
+					res.json({error: 'Oops, there seems to be an issue with the credentials you have supplied.  Make sure you typed them correctly and that you have access to Exchange Roomlists.'});
 				}
 				else {
 					res.json({error: 'Hmm, there seems to be a weird issue occuring.'});
