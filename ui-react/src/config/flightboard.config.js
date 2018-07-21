@@ -1,11 +1,9 @@
 module.exports = {
   'board' : {
-    'text' : {
-      'nextUp' : 'Next Up',
-      'statusAvailable' : 'Open',
-      'statusBusy' : 'Busy',
-      'statusError' : 'Error'
-    }
+    'nextUp' : 'Next Up',
+    'statusAvailable' : 'Open',
+    'statusBusy' : 'Busy',
+    'statusError' : 'Error'
   },
 
   'navbar' : {
@@ -16,8 +14,4 @@ module.exports = {
     'filterTitle' : 'Locations',
     'filterAllTitle' : 'All Conference Rooms',
   },
-
-  'socket' : {
-    'endpoint' : 'http://localhost:8080',
-  }
 };
