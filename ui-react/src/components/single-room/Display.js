@@ -11,7 +11,7 @@ class Display extends Component {
     this.state = {
       response: false,
       now: new Date(),
-      roomAlias: this.props.data,
+      roomAlias: this.props.alias,
       rooms: []
     }
   }

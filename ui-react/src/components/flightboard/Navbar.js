@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Clock from './Clock';
 import RoomFilter from './RoomFilter';
@@ -41,5 +42,9 @@ class Navbar extends Component {
     )
   }
 }
+
+Navbar.propTypes = {
+  filter: PropTypes.func
+};
 
 export default Navbar;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import FlightboardRow from './FlightboardRow';
 import Socket from '../global/Socket';
@@ -73,5 +74,9 @@ class Flightboard extends Component {
   }
 
 }
+
+Flightboard.propTypes = {
+  filter: PropTypes.string
+};
 
 export default Flightboard;
