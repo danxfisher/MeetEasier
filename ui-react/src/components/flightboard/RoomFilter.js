@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 let fbConfig = require('../../config/flightboard.config.js');
 
@@ -70,5 +71,9 @@ class RoomFilter extends Component {
     );
   }
 }
+
+RoomFilter.propTypes = {
+  filter: PropTypes.func
+};
 
 export default RoomFilter;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 let fbConfig = require('../../config/flightboard.config.js');
@@ -121,5 +122,12 @@ class FlightboardRow extends Component {
     )
   }
 }
+
+FlightboardRow.propTypes = {
+  item: PropTypes.string,
+  now: PropTypes.instanceOf(Date),
+  key: PropTypes.number,
+  filter: PropTypes.string
+};
 
 export default FlightboardRow;

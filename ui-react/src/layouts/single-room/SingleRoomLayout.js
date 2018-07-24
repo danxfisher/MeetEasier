@@ -17,7 +17,7 @@ class SingleRoomLayout extends Component {
 
       <div id="single-room__wrap">
         { roomAlias ?
-          <Display data={this.state.roomAlias} />
+          <Display alias={this.state.roomAlias} />
         :
           <div id="error-wrap">
             <NotFound />

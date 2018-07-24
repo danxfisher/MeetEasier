@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import socketIOClient from 'socket.io-client';
 
 class Socket extends Component {
@@ -36,6 +37,10 @@ class Socket extends Component {
   render() {
     return null;
   }
+}
+
+Socket.propTypes = {
+  response: PropTypes.func
 }
 
 export default Socket;
