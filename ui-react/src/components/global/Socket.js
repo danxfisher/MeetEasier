@@ -9,8 +9,10 @@ class Socket extends Component {
     socket.on('updatedRooms', (rooms) => {
       this.props.response({
         response: true,
+        now: new Date(),
         rooms: rooms
       });
+
     });
   }
 
