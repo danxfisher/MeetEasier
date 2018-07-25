@@ -3,19 +3,10 @@ import PropTypes from 'prop-types';
 import socketIOClient from 'socket.io-client';
 
 class Socket extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      response: false,
-      rooms: []
-    }
-  }
-
   componentDidMount = () => {
     const socket = socketIOClient();
 
     socket.on('updatedRooms', (rooms) => {
-
       this.props.response({
         response: true,
         rooms: rooms
