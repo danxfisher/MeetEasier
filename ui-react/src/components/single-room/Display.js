@@ -115,7 +115,6 @@ class Display extends Component {
       </div>
     );
   }
-
 }
 
 export default Display;
