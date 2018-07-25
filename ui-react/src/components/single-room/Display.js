@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import RoomStatusBlock from './RoomStatusBlock';
 import Sidebar from './Sidebar';
 import Socket from '../global/Socket';
 import Spinner from '../global/Spinner';
 
-let srConfig = require('../../config/singleRoom.config.js');
+let config = require('../../config/singleRoom.config.js');
 
 class Display extends Component {
   constructor(props) {
@@ -73,7 +74,7 @@ class Display extends Component {
           this.setState(prevState => ({
             roomDetails: {
               ...prevState.roomDetails,
-              nextUp: srConfig.nextUp + ': '
+              nextUp: config.nextUp + ': '
             }
           }));
         }
@@ -106,8 +107,8 @@ class Display extends Component {
 
         { response ?
           <div className="row expanded full-height">
-            <RoomStatusBlock room={room} details={roomDetails} config={srConfig} />
-            <Sidebar room={room} details={roomDetails} config={srConfig} />
+            <RoomStatusBlock room={room} details={roomDetails} config={config} />
+            <Sidebar room={room} details={roomDetails} config={config} />
           </div>
         :
           <Spinner />
@@ -115,6 +116,10 @@ class Display extends Component {
       </div>
     );
   }
+}
+
+Display.propTypes = {
+  alias: PropTypes.string
 }
 
 export default Display;
