@@ -37,7 +37,8 @@ class Display extends Component {
   processRoomDetails = () => {
     const { rooms, roomAlias } = this.state;
 
-    let room = rooms.filter(item => item.RoomAlias === roomAlias);
+    let roomArray = rooms.filter(item => item.RoomAlias === roomAlias);
+    let room = roomArray[0];
 
     // 1) ensure that appointments exist for the room
     // 2) check if there are more than 1 upcoming appointments
@@ -68,7 +69,7 @@ class Display extends Component {
           }
         }));
 
-        if (room.Busy === 'false') {
+        if (!room.Busy) {
           this.setState(prevState => ({
             roomDetails: {
               ...prevState.roomDetails,
@@ -87,7 +88,7 @@ class Display extends Component {
 
   handleSocket = (socketResponse) => {
     this.setState({
-      response: socketResponse.response
+      response: socketResponse.response,
       rooms: socketResponse.rooms
     }, () => this.processRoomDetails());
   }

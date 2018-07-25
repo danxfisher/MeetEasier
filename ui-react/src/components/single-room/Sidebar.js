@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 
 import Clock from './Clock';
 
-const Sidebar = props => (
+const Sidebar = ({ config, details, room}) => (
   <div className="columns small-4 right-col">
     <div id="single-room__clock-wrap">
       <Clock />
     </div>
     <div id="upcoming-title">
-      {props.config.upcomingTitle}
+      {config.upcomingTitle}
     </div>
     <table>
-      { props.details.upcomingTable ?
-        props.room.Appointments.slice(1).map((item, key) => {
+      { details.upcomingAppointments ?
+        room.Appointments.slice(1).map((item, key) => {
           return (
             <tr>
               <td className="up__meeting-title">{item.Subject}</td>
