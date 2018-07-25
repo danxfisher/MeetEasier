@@ -28,28 +28,17 @@ class RoomStatusBlock extends Component {
           timesPresent: true
         });
 
-        if (room.Busy === 'true') {
-          this.setState({
-            nextUp: ''
-          });
-        }
-        else {
+        if (room.Busy === 'false') {
           this.setState({
             nextUp: srConfig.nextUp + ': '
           });
         }
       }
-      else {
-        this.setState({
-          timesPresent: false
-        });
-      }
     }
-    else {
-      this.setState({
-        appointmentExists: false
-      });
-    }
+  }
+
+  componentDidUpdate = () => {
+    this.roomAppointmentValidation();
   }
 
   componentDidMount = () => {
@@ -57,8 +46,9 @@ class RoomStatusBlock extends Component {
   }
 
   render() {
-    const { room } = this.state;
-    const { appointmentExists } = this.state;
+    const { nextUp, room } = this.state;
+    const { appointmentExists, timesPresent } = this.state;
+
     return (
       <div className={room.Busy ? 'columns small-8 left-col busy' : 'columns small-8 left-col open'}>
         <div id="single-room__room-name">{room.Name}</div>
@@ -70,19 +60,22 @@ class RoomStatusBlock extends Component {
             </span>
             {room.Appointments[0].Subject}
           </div>
-        : ''
+        :
+          ''
         }
         <div id="single-room__meeting-time">
-          {timesPresent ?
-            new Date(parseInt(room.Appointments[0].Start, 10)).toLocaleTimeString([], {weekday: 'short', hour: '2-digit', minute: '2-digit'}) + ' - ' + new Date(parseInt(item.Appointments[0].End, 10)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
-            : ''
+          { timesPresent ?
+            new Date(parseInt(room.Appointments[0].Start, 10)).toLocaleTimeString([], {weekday: 'short', hour: '2-digit', minute: '2-digit'}) + ' - ' + new Date(parseInt(room.Appointments[0].End, 10)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
+          :
+            ''
           }
         </div>
         { appointmentExists ?
           <div id="single-room__meeting-organizer">
             {room.Appointments[0].Organizer}
           </div>
-          : ''
+        :
+          ''
         }
       </div>
     );
@@ -91,7 +84,7 @@ class RoomStatusBlock extends Component {
 }
 
 RoomStatusBlock.propTypes = {
-  room: Prop
+  room: PropTypes.array
 }
 
 export default RoomStatusBlock;
