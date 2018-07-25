@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import Clock from './Clock.js';
 import RoomStatusBlock from './RoomStatusBlock';
 import Sidebar from './Sidebar';
 import Socket from '../global/Socket';
@@ -13,10 +12,15 @@ class Display extends Component {
     super(props);
     this.state = {
       response: false,
-      now: new Date(),
       roomAlias: this.props.alias,
       rooms: [],
-      room: []
+      room: [],
+      roomDetails: {
+        appointmentExists: false,
+        timesPresent: false,
+        upcomingAppointments: false,
+        nextUp: ''
+      }
     }
   }
 
@@ -26,14 +30,54 @@ class Display extends Component {
       .then((data) => {
         this.setState({
           rooms: data
-        }, () => this.filterForCurrentRoom());
+        }, () => this.processRoomDetails());
       })
   }
 
-  filterForCurrentRoom = () => {
+  processRoomDetails = () => {
     const { rooms, roomAlias } = this.state;
 
     let room = rooms.filter(item => item.RoomAlias === roomAlias);
+
+    // 1) ensure that appointments exist for the room
+    // 2) check if there are more than 1 upcoming appointments
+    // 3) check if there are times in the room.Start & room.End
+    // 4) if the meeting is not going on now, append "Next Up: "
+    if (typeof room.Appointments !== 'undefined' && room.Appointments.length > 0) {
+      this.setState(prevState => ({
+        roomDetails: {
+          ...prevState.roomDetails,
+          appointmentExists: true
+        }
+      }));
+
+      if (room.Appointments.length > 1) {
+        this.setState(prevState => ({
+          roomDetails: {
+            ...prevState.roomDetails,
+            upcomingAppointments: true
+          }
+        }));
+      }
+
+      if (room.Appointments[0].Start && room.Appointments[0].End) {
+        this.setState(prevState => ({
+          roomDetails: {
+            ...prevState.roomDetails,
+            timesPresent: true
+          }
+        }));
+
+        if (room.Busy === 'false') {
+          this.setState(prevState => ({
+            roomDetails: {
+              ...prevState.roomDetails,
+              nextUp: srConfig.nextUp + ': '
+            }
+          }));
+        }
+      }
+    }
 
     this.setState({
       response: true,
@@ -43,10 +87,9 @@ class Display extends Component {
 
   handleSocket = (socketResponse) => {
     this.setState({
-      response: socketResponse.response,
-      now: socketResponse.now,
+      response: socketResponse.response
       rooms: socketResponse.rooms
-    }, () => this.filterForCurrentRoom());
+    }, () => this.processRoomDetails());
   }
 
   componentDidMount = () => {
@@ -54,7 +97,7 @@ class Display extends Component {
   }
 
   render() {
-    const { now, response, room } = this.state;
+    const { response, room, roomDetails } = this.state;
 
     return (
       <div>
@@ -62,11 +105,8 @@ class Display extends Component {
 
         { response ?
           <div className="row expanded full-height">
-
-            {/* include props: room  */}
-            <RoomStatusBlock room={room} />
-            <Sidebar room={room} />
-
+            <RoomStatusBlock room={room} details={roomDetails} config={srConfig} />
+            <Sidebar room={room} details={roomDetails} config={srConfig} />
           </div>
         :
           <Spinner />
