@@ -20,6 +20,8 @@ In the event of wanting to commercially distribute a closed source modification 
 
 ## Updates
 
+* v0.3.4
+  * [#34](https://github.com/danxfisher/MeetEasier/pull/34) - bug fix for 'Next up:' displaying incorrectly
 * v0.3.3
   * [#18](https://github.com/danxfisher/MeetEasier/pull/15) - use localized sort for rooms
 * v0.3.2
