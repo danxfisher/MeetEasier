@@ -14,16 +14,22 @@ class FlightboardRow extends Component {
   }
 
   getAppointmentTime = () => {
-    const { item, now } = this.props;
+    const { room, now } = this.props;
 
-    // check if there are times in the item.Start & item.End
+    // check if there are times in the room.Start & room.End
     // then: if the meeting is not going on now, append "Next Up: "
-    if (typeof item.Appointments !== 'undefined' && item.Appointments.length > 0) {
-      if (item.Appointments[0].Start && item.Appointments[0].End) {
+    if (typeof room.Appointments !== 'undefined' && room.Appointments.length > 0) {
+      if (room.Appointments[0].Start && room.Appointments[0].End) {
         this.setState({
           timesPresent: true
         });
-        if (item.Appointments[0].Start < now && now < item.Appointments[0].End) { } else {
+        
+        if (room.Busy) {
+          this.setState({
+            nextUp: ''
+          });
+        }
+        else {
           this.setState({
             nextUp: fbConfig.board.nextUp + ': '
           });
@@ -38,7 +44,7 @@ class FlightboardRow extends Component {
 
   render() {
     const { nextUp, timesPresent } = this.state;
-    const { item, now } = this.props;
+    const { room, now } = this.props;
 
     const styles = {
       show: {display: 'block'},
@@ -46,21 +52,21 @@ class FlightboardRow extends Component {
       flex: {display: 'flex'}
     }
 
-    const room = item.Name.toLowerCase().replace(/\s+/g, "-");
-    const roomlist = 'roomlist-' + item.Roomlist.toLowerCase().replace(/\s+/g, "-");
+    const roomName = room.Name.toLowerCase().replace(/\s+/g, "-");
+    const roomlist = 'roomlist-' + room.Roomlist.toLowerCase().replace(/\s+/g, "-");
 
     // set row class based on meet room status
-    let meetingRoomClass = `${ room } meeting-room ${ item.Busy ? 'meeting-room-busy' : '' }`;
-    meetingRoomClass += item.Busy ? ' meeting-room-busy' : '';
-    meetingRoomClass += item.ErrorMessage ? ' meeting-room-error' : '';
-    const meetingClass = item.ErrorMessage
+    let meetingRoomClass = `${ roomName } meeting-room ${ room.Busy ? 'meeting-room-busy' : '' }`;
+    meetingRoomClass += room.Busy ? ' meeting-room-busy' : '';
+    meetingRoomClass += room.ErrorMessage ? ' meeting-room-error' : '';
+    const meetingClass = room.ErrorMessage
       ? 'meeting-error'
-      : item.Busy
+      : room.Busy
         ? 'meeting-busy'
         : 'meeting-open';
-    let statusText = item.ErrorMessage
+    let statusText = room.ErrorMessage
       ? fbConfig.board.statusError
-      : item.Busy
+      : room.Busy
         ? fbConfig.board.statusBusy
         : fbConfig.board.statusAvailable;
 
@@ -70,45 +76,45 @@ class FlightboardRow extends Component {
           <div className="medium-12 columns">
             <div className={meetingRoomClass}>
               <div className="row valign-middle">
-                <div className={room + '-status meeting-room__status medium-2 columns'}>
-                  <div className={meetingClass} title={item.ErrorMessage || ''}>
+                <div className={roomName + '-status meeting-room__status medium-2 columns'}>
+                  <div className={meetingClass} title={room.ErrorMessage || ''}>
                     {statusText}
                   </div>
                 </div>
                 <div className="medium-3 columns">
-                  <div className={room + '-name meeting-room__name'}>
-                    {item.Name}
+                  <div className={roomName + '-name meeting-room__name'}>
+                    {room.Name}
                   </div>
                 </div>
                 <div className="medium-6 columns">
-                  <div className={room + '-meeting-information'}>
-                    {timesPresent && item.Appointments[0].End >= now &&
+                  <div className={roomName + '-meeting-information'}>
+                    {timesPresent && room.Appointments[0].End >= now &&
                       <div>
-                        <span className={room + '-meeting-upcoming meeting-upcoming'}>
+                        <span className={roomName + '-meeting-upcoming meeting-upcoming'}>
                           {nextUp}
                         </span>
-                        <span className={room + '-subject meeting-subject'}>
-                          {item.Appointments[0].Subject}
+                        <span className={roomName + '-subject meeting-subject'}>
+                          {room.Appointments[0].Subject}
                         </span>
                       </div>
                     }
                   </div>
-                  <div className={room + '-time meeting-time'}>
+                  <div className={roomName + '-time meeting-time'}>
                     {timesPresent ?
-                      new Date(parseInt(item.Appointments[0].Start, 10)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) + ' - ' + new Date(parseInt(item.Appointments[0].End, 10)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
+                      new Date(parseInt(room.Appointments[0].Start, 10)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) + ' - ' + new Date(parseInt(room.Appointments[0].End, 10)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
                       : ''
                     }
                   </div>
-                  <div className={room + '-organizer meeting-organizer'}>
-                    {timesPresent && item.Appointments[0].End >= now &&
-                      item.Appointments[0].Organizer
+                  <div className={roomName + '-organizer meeting-organizer'}>
+                    {timesPresent && room.Appointments[0].End >= now &&
+                      room.Appointments[0].Organizer
                     }
                   </div>
                 </div>
                 <div className="medium-1 columns">
                   <div className="meeting-fullscreen">
 
-                    <Link to={'/single-room/' + room} target="_blank">
+                    <Link to={'/single-room/' + roomName} target="_blank">
                       <i className="fi-monitor"></i>
                     </Link>
 
@@ -124,7 +130,7 @@ class FlightboardRow extends Component {
 }
 
 FlightboardRow.propTypes = {
-  item: PropTypes.string,
+  room: PropTypes.string,
   now: PropTypes.instanceOf(Date),
   key: PropTypes.number,
   filter: PropTypes.string
