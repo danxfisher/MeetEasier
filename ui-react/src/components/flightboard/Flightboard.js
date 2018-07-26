@@ -59,7 +59,7 @@ class Flightboard extends Component {
         { response ?
           (!error ?
             rooms.map((room, key) =>
-              <FlightboardRow item={room} now={now} key={key} filter={this.props.filter} />
+              <FlightboardRow room={room} now={now} key={key} filter={this.props.filter} />
             )
           :
             <div className="container">

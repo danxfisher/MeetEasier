@@ -78,6 +78,14 @@ class Display extends Component {
             }
           }));
         }
+        else {
+          this.setState(prevState => ({
+            roomDetails: {
+              ...prevState.roomDetails,
+              nextUp: ''
+            }
+          }));
+        }
       }
     }
 
