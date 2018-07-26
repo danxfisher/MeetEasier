@@ -14,7 +14,7 @@ class FlightboardRow extends Component {
   }
 
   getAppointmentTime = () => {
-    const { room, now } = this.props;
+    const { room } = this.props;
 
     // check if there are times in the room.Start & room.End
     // then: if the meeting is not going on now, append "Next Up: "
