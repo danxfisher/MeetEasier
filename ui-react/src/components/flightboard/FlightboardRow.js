@@ -23,7 +23,7 @@ class FlightboardRow extends Component {
         this.setState({
           timesPresent: true
         });
-        
+
         if (room.Busy) {
           this.setState({
             nextUp: ''
@@ -36,6 +36,10 @@ class FlightboardRow extends Component {
         }
       }
     }
+  }
+
+  componentDidUpdate = () => {
+    this.getAppointmentTime();
   }
 
   componentDidMount = () => {
