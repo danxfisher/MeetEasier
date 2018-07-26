@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-let fbConfig = require('../../config/flightboard.config.js');
+let config = require('../../config/flightboard.config.js');
 
 class FlightboardRow extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class FlightboardRow extends Component {
   }
 
   getAppointmentTime = () => {
-    const { room, now } = this.props;
+    const { room } = this.props;
 
     // check if there are times in the room.Start & room.End
     // then: if the meeting is not going on now, append "Next Up: "
@@ -31,7 +31,7 @@ class FlightboardRow extends Component {
         }
         else {
           this.setState({
-            nextUp: fbConfig.board.nextUp + ': '
+            nextUp: config.board.nextUp + ': '
           });
         }
       }
@@ -56,23 +56,24 @@ class FlightboardRow extends Component {
       flex: {display: 'flex'}
     }
 
-    const roomName = room.Name.toLowerCase().replace(/\s+/g, "-");
     const roomlist = 'roomlist-' + room.Roomlist.toLowerCase().replace(/\s+/g, "-");
 
     // set row class based on meet room status
-    let meetingRoomClass = `${ roomName } meeting-room ${ room.Busy ? 'meeting-room-busy' : '' }`;
+    let meetingRoomClass = `${ room.RoomAlias } meeting-room ${ room.Busy ? 'meeting-room-busy' : '' }`;
     meetingRoomClass += room.Busy ? ' meeting-room-busy' : '';
     meetingRoomClass += room.ErrorMessage ? ' meeting-room-error' : '';
+
     const meetingClass = room.ErrorMessage
       ? 'meeting-error'
       : room.Busy
         ? 'meeting-busy'
         : 'meeting-open';
+
     let statusText = room.ErrorMessage
-      ? fbConfig.board.statusError
+      ? config.board.statusError
       : room.Busy
-        ? fbConfig.board.statusBusy
-        : fbConfig.board.statusAvailable;
+        ? config.board.statusBusy
+        : config.board.statusAvailable;
 
     return (
       <div className={'row-padder ' + roomlist} style={this.props.filter === roomlist || this.props.filter === 'roomlist-all' || this.props.filter === '' ? styles.show : styles.hide}>
@@ -80,36 +81,38 @@ class FlightboardRow extends Component {
           <div className="medium-12 columns">
             <div className={meetingRoomClass}>
               <div className="row valign-middle">
-                <div className={roomName + '-status meeting-room__status medium-2 columns'}>
+
+                <div className={room.RoomAlias + '-status meeting-room__status medium-2 columns'}>
                   <div className={meetingClass} title={room.ErrorMessage || ''}>
                     {statusText}
                   </div>
                 </div>
                 <div className="medium-3 columns">
-                  <div className={roomName + '-name meeting-room__name'}>
+                  <div className={room.RoomAlias + '-name meeting-room__name'}>
                     {room.Name}
                   </div>
                 </div>
                 <div className="medium-6 columns">
-                  <div className={roomName + '-meeting-information'}>
+                  <div className={room.RoomAlias + '-meeting-information'}>
                     {timesPresent && room.Appointments[0].End >= now &&
                       <div>
-                        <span className={roomName + '-meeting-upcoming meeting-upcoming'}>
+                        <span className={room.RoomAlias + '-meeting-upcoming meeting-upcoming'}>
                           {nextUp}
                         </span>
-                        <span className={roomName + '-subject meeting-subject'}>
+                        <span className={room.RoomAlias + '-subject meeting-subject'}>
                           {room.Appointments[0].Subject}
                         </span>
                       </div>
                     }
                   </div>
-                  <div className={roomName + '-time meeting-time'}>
+                  <div className={room.RoomAlias + '-time meeting-time'}>
                     {timesPresent ?
                       new Date(parseInt(room.Appointments[0].Start, 10)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) + ' - ' + new Date(parseInt(room.Appointments[0].End, 10)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
-                      : ''
+                    :
+                      ''
                     }
                   </div>
-                  <div className={roomName + '-organizer meeting-organizer'}>
+                  <div className={room.RoomAlias + '-organizer meeting-organizer'}>
                     {timesPresent && room.Appointments[0].End >= now &&
                       room.Appointments[0].Organizer
                     }
@@ -117,13 +120,14 @@ class FlightboardRow extends Component {
                 </div>
                 <div className="medium-1 columns">
                   <div className="meeting-fullscreen">
-
-                    <Link to={'/single-room/' + roomName} target="_blank">
-                      <i className="fi-monitor"></i>
-                    </Link>
-
+                    {!room.ErrorMessage &&
+                      <Link to={'/single-room/' + room.RoomAlias} target="_blank">
+                        <i className="fi-monitor"></i>
+                      </Link>
+                    }
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
