@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-let fbConfig = require('../../config/flightboard.config.js');
+let config = require('../../config/flightboard.config.js');
 
 class RoomFilter extends Component {
   constructor(props) {
@@ -49,11 +49,11 @@ class RoomFilter extends Component {
     return (
       <li>
         <a href="#" className="current-filter">
-          {fbConfig.roomFilter.filterTitle}
+          {config.roomFilter.filterTitle}
         </a>
         <ul className="menu fb__child-dropdown">
           <li onClick={this.filterFlightboard} id="roomlist-all">
-            {fbConfig.roomFilter.filterAllTitle}
+            {config.roomFilter.filterAllTitle}
           </li>
 
           { response && !error ?

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Flightboard Navbar renders correctly 1`] = `
+<div
+  id="title-bar-wrap"
+>
+  <div
+    className="title-bar"
+  >
+    <div
+      className="title-bar-left"
+    >
+      <ul
+        className="horizontal menu fb__nav-menu"
+      >
+        <li>
+          <img
+            alt="Logo"
+            src="img/logo.png"
+          />
+        </li>
+        <li>
+          Conference Room Availability
+          <br />
+          <ul
+            className="dropdown menu fb__dropdown"
+            data-dropdown-menu={true}
+            id="roomlist-filter"
+          >
+            <RoomFilter
+              filter={[Function]}
+            />
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div
+      className="title-bar-right"
+    >
+      <ul
+        className="horizontal menu fb__nav-menu-right"
+      >
+        <li
+          id="the-clock"
+        >
+          <Clock />
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
