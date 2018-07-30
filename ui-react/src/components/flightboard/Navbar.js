@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Clock from './Clock';
-import RoomFilter from './RoomFilter';
+import RoomFilterContainer from './RoomFilterContainer';
 
 let config = require('../../config/flightboard.config.js');
 
@@ -25,7 +25,7 @@ class Navbar extends Component {
                 {config.navbar.title}
                 <br />
                 <ul id="roomlist-filter" className="dropdown menu fb__dropdown" data-dropdown-menu>
-                  <RoomFilter filter={this.handleFilter}/>
+                  <RoomFilterContainer filter={this.handleFilter}/>
                 </ul>
               </li>
             </ul>

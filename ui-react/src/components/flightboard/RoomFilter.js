@@ -6,33 +6,33 @@ let config = require('../../config/flightboard.config.js');
 class RoomFilter extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      response: false,
-      error: false,
-      roomlists: []
-    }
+    // this.state = {
+    //   response: false,
+    //   error: false,
+    //   roomlists: []
+    // }
   }
 
-  getRoomlist = () => {
-    return fetch('/api/roomlists')
-      .then((response) => response.json())
-      .then((data) => {
-        if(!data.error){
-          this.setState({
-            response: true,
-            error: false,
-            roomlists: data
-          });
-        }
-        else {
-          this.setState({
-            response: true,
-            error: true,
-            roomlists: data
-          });
-        }
-      })
-  }
+  // getRoomlist = () => {
+  //   return fetch('/api/roomlists')
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       if(!data.error){
+  //         this.setState({
+  //           response: true,
+  //           error: false,
+  //           roomlists: data
+  //         });
+  //       }
+  //       else {
+  //         this.setState({
+  //           response: true,
+  //           error: true,
+  //           roomlists: data
+  //         });
+  //       }
+  //     })
+  // }
 
   filterFlightboard = (e) => {
     e.preventDefault();
@@ -40,11 +40,11 @@ class RoomFilter extends Component {
   }
 
   componentDidMount() {
-    this.getRoomlist();
+    // this.getRoomlist();
   }
 
   render() {
-    const { error, response } = this.state;
+    const { error, response, roomlists } = this.props;
 
     return (
       <li>
@@ -57,7 +57,7 @@ class RoomFilter extends Component {
           </li>
 
           { response && !error ?
-            this.state.roomlists.map((item, key) =>
+            roomlists.map((item, key) =>
               <li onClick={this.filterFlightboard} id={'roomlist-' + item.toLowerCase().replace(/\s+/g, "-")}>
                 {item}
               </li>
