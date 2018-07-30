@@ -22,3 +22,4 @@ yarn-error.log*
 
 # custom
 /src/components/_old
+/src/components/flightboard/_old_FlightboardRow.js
