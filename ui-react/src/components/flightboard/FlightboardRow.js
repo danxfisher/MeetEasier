@@ -7,53 +7,32 @@ let config = require('../../config/flightboard.config.js');
 class FlightboardRow extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      nextUp: '',
-      timesPresent: false
-    }
-  }
-
-  getAppointmentTime = () => {
-    const { room } = this.props;
-
-    // check if there are times in the room.Start & room.End
-    // then: if the meeting is not going on now, append "Next Up: "
-    if (typeof room.Appointments !== 'undefined' && room.Appointments.length > 0) {
-      if (room.Appointments[0].Start && room.Appointments[0].End) {
-        this.setState({
-          timesPresent: true
-        });
-
-        if (room.Busy) {
-          this.setState({
-            nextUp: ''
-          });
-        }
-        else {
-          this.setState({
-            nextUp: config.board.nextUp + ': '
-          });
-        }
-      }
-    }
-  }
-
-  componentDidUpdate = () => {
-    this.getAppointmentTime();
-  }
-
-  componentDidMount = () => {
-    this.getAppointmentTime();
   }
 
   render() {
-    const { nextUp, timesPresent } = this.state;
     const { room, now } = this.props;
+
+    let timesPresent = false;
+    let nextUp = '';
 
     const styles = {
       show: {display: 'block'},
       hide: {display: 'none'},
       flex: {display: 'flex'}
+    }
+
+    // check if there are times in the room.Start & room.End
+    // then: if the meeting is not going on now, append "Next Up: "
+    if (typeof room.Appointments !== 'undefined' && room.Appointments.length > 0) {
+      if (room.Appointments[0].Start && room.Appointments[0].End) {
+        timesPresent: true;
+        if (room.Busy) {
+          let nextUp = '';
+        }
+        else {
+          let nextUp = config.board.nextUp + ': ';
+        }
+      }
     }
 
     const roomlist = 'roomlist-' + room.Roomlist.toLowerCase().replace(/\s+/g, "-");
