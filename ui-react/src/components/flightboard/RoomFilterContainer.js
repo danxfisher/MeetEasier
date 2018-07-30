@@ -43,7 +43,7 @@ class RoomFilterContainer extends Component {
 
   render() {
     return (
-      <RoomFilter {...this.state} />
+      <RoomFilter {...this.state} filter={this.handleFilter} />
     );
   }
 
