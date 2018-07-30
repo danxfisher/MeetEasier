@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as config from './../config/singleRoom.config.js';
+import * as config from '../../config/singleRoom.config.js';
 
 import RoomStatusBlock from './RoomStatusBlock';
 import Sidebar from './Sidebar';
