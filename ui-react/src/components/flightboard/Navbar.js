@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as config from '../../config/flightboard.config.js';
 
 import Clock from './Clock';
 import RoomFilterContainer from './RoomFilterContainer';
-
-let config = require('../../config/flightboard.config.js');
 
 class Navbar extends Component {
 

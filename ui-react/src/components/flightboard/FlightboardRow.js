@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
-let config = require('../../config/flightboard.config.js');
+import * as config from '../../config/flightboard.config.js';
 
 const Status = ({ room }) => {
   const meetingClass = room.ErrorMessage
@@ -24,11 +23,7 @@ const Status = ({ room }) => {
   );
 };
 
-const NextUp = ({ room }) => {
-
-}
-
-const Appointment = ({ room }) => {
+const Subject = ({ room }) => {
   return (
     <div className={room.RoomAlias + '-meeting-information'}>
       {room.Appointments.length > 0 &&
@@ -77,7 +72,7 @@ const FullScreenIcon = ({ room }) => {
   );
 };
 
-const FlightboardRow = ({ room }) => {
+const FlightboardRow = ({ room, filter }) => {
   const styles = {
     show: {display: 'block'},
     hide: {display: 'none'},
@@ -92,14 +87,14 @@ const FlightboardRow = ({ room }) => {
   meetingRoomClass += room.ErrorMessage ? ' meeting-room-error' : '';
 
   return (
-    <div className={'row-padder ' + roomlist} style={this.props.filter === roomlist || this.props.filter === 'roomlist-all' || this.props.filter === '' ? styles.show : styles.hide}>
+    <div className={'row-padder ' + roomlist} style={filter === roomlist || filter === 'roomlist-all' || filter === '' ? styles.show : styles.hide}>
       <div className="row">
         <div className="medium-12 columns">
           <div className={meetingRoomClass}>
             <div className="row valign-middle">
 
               <div className={room.RoomAlias + '-status meeting-room__status medium-2 columns'}>
-                <Status />
+                <Status room={room} />
               </div>
               <div className="medium-3 columns">
                 <div className={room.RoomAlias + '-name meeting-room__name'}>
@@ -107,12 +102,12 @@ const FlightboardRow = ({ room }) => {
                 </div>
               </div>
               <div className="medium-6 columns">
-                <Appointment />
-                <Time />
-                <Organizer />
+                <Subject room={room} />
+                <Time room={room} />
+                <Organizer room={room} />
               </div>
               <div className="medium-1 columns">
-                <FullScreenIcon />
+                <FullScreenIcon room={room} />
               </div>
 
             </div>
@@ -125,7 +120,6 @@ const FlightboardRow = ({ room }) => {
 
 FlightboardRow.propTypes = {
   room: PropTypes.string,
-  now: PropTypes.instanceOf(Date),
   key: PropTypes.number,
   filter: PropTypes.string
 };
