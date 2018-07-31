@@ -12,12 +12,10 @@ import NotFound from './components/global/NotFound';
 
 ReactDOM.render ((
   <BrowserRouter>
-    <div>
-      <Switch>
-        <Route exact path="/" component={FlightboardLayout} />
-        <Route exact path="/single-room/:name" component={SingleRoomLayout} />
-        <Route component={NotFound} />
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path="/" component={FlightboardLayout} />
+      <Route exact path="/single-room/:name" component={SingleRoomLayout} />
+      <Route component={NotFound} />
+    </Switch>
   </BrowserRouter>
 ), document.getElementById('app'));

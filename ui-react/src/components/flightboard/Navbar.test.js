@@ -25,7 +25,7 @@ describe('Flightboard Navbar', () => {
     const filterAction = jest.fn();
     const wrapper = shallow(<Navbar filter={filterAction} />);
 
-    wrapper.find('RoomFilter').prop('filter')('foo');
+    wrapper.find('RoomFilterContainer').prop('filter')('foo');
 
     expect(filterAction).toHaveBeenCalledWith('foo');
   });

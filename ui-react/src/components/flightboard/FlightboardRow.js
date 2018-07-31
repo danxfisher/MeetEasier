@@ -82,12 +82,12 @@ const FlightboardRow = ({ room, filter }) => {
   const roomlist = 'roomlist-' + room.Roomlist.toLowerCase().replace(/\s+/g, "-");
 
   // set row class based on meet room status
-  let meetingRoomClass = `${ room.RoomAlias } meeting-room ${ room.Busy ? 'meeting-room-busy' : '' }`;
+  let meetingRoomClass = room.RoomAlias + ' meeting-room';
   meetingRoomClass += room.Busy ? ' meeting-room-busy' : '';
   meetingRoomClass += room.ErrorMessage ? ' meeting-room-error' : '';
 
   return (
-    <div className={'row-padder ' + roomlist} style={filter === roomlist || filter === 'roomlist-all' || filter === '' ? styles.show : styles.hide}>
+    <div className={'meeting-room__row row-padder ' + roomlist} style={filter === roomlist || filter === 'roomlist-all' || filter === '' ? styles.show : styles.hide}>
       <div className="row">
         <div className="medium-12 columns">
           <div className={meetingRoomClass}>
@@ -119,7 +119,7 @@ const FlightboardRow = ({ room, filter }) => {
 };
 
 FlightboardRow.propTypes = {
-  room: PropTypes.string,
+  room: PropTypes.object,
   key: PropTypes.number,
   filter: PropTypes.string
 };

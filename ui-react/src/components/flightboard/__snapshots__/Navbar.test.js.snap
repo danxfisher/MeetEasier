@@ -27,7 +27,7 @@ exports[`Flightboard Navbar renders correctly 1`] = `
             data-dropdown-menu={true}
             id="roomlist-filter"
           >
-            <RoomFilter
+            <RoomFilterContainer
               filter={[Function]}
             />
           </ul>

@@ -2,6 +2,9 @@ import RoomFilter from './RoomFilter';
 import fetch from 'isomorphic-fetch';
 
 describe('Flightboard RoomFilter', () => {
+  it('renders correctly', () => {
+
+  });
   // it('renders correctly', () => {
   //   // const spy = jest.
   //   const wrapper = shallow(<RoomFilter />);
