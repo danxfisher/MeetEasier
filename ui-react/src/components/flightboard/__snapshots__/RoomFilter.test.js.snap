@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Flightboard RoomFilter renders correctly 1`] = `
+<li>
+  <a
+    className="current-filter"
+    href="#"
+  >
+    Locations
+  </a>
+  <ul
+    className="menu fb__child-dropdown"
+  >
+    <li
+      id="roomlist-all"
+      onClick={[Function]}
+    >
+      All Conference Rooms
+    </li>
+    <li
+      id="roomlist-roomlist-number-one"
+      key="0"
+      onClick={[Function]}
+    >
+      Roomlist Number One
+    </li>
+    <li
+      id="roomlist-roomlist-number-two"
+      key="1"
+      onClick={[Function]}
+    >
+      Roomlist Number Two
+    </li>
+  </ul>
+</li>
+`;

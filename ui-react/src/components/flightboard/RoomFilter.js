@@ -5,7 +5,6 @@ import * as config from '../../config/flightboard.config.js';
 class RoomFilter extends Component {
 
   filterFlightboard = (e) => {
-    e.preventDefault();
     this.props.filter(e.target.id);
   }
 
@@ -24,12 +23,14 @@ class RoomFilter extends Component {
 
           { response && !error ?
             roomlists.map((item, key) =>
-              <li onClick={this.filterFlightboard} id={'roomlist-' + item.toLowerCase().replace(/\s+/g, "-")}>
+              <li onClick={this.filterFlightboard} key={key} id={'roomlist-' + item.toLowerCase().replace(/\s+/g, "-")}>
                 {item}
               </li>
             )
           :
-            <p>Loading ...</p>
+            <li id="roomlist__loading">
+              Loading ...
+            </li>
           }
 
         </ul>
@@ -39,7 +40,10 @@ class RoomFilter extends Component {
 }
 
 RoomFilter.propTypes = {
-  filter: PropTypes.func
+  filter: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.string
+  ])
 };
 
 export default RoomFilter;
