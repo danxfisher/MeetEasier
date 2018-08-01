@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Flightboard Row renders correctly 1`] = `
+exports[`Flightboard Row Component renders correctly 1`] = `
 <div
   className="meeting-room__row row-padder roomlist-test-roomlist"
   style={

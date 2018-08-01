@@ -1,32 +1,32 @@
 import Navbar from './Navbar';
 
 describe('Flightboard Navbar', () => {
-  it('renders correctly', () => {
-    const wrapper = shallow(<Navbar />);
+  let mockFilter, wrapper;
 
+  beforeEach(() => {
+    mockFilter = jest.fn();
+    wrapper = shallow(<Navbar filter={mockFilter} />);
+  });
+
+  it('renders correctly', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('renders roomfilter component correctly', () => {
-    const wrapper = shallow(<Navbar />);
-    const filter = wrapper.find("RoomFilter");
+  it('renders RoomFilterContainer component correctly', () => {
+    const filter = wrapper.find('RoomFilterContainer').exists();
 
-    expect(filter).toBeDefined();
+    expect(filter).toBeTruthy();
   });
 
-  it('renders clock component correctly', () => {
-    const wrapper = shallow(<Navbar />);
-    const clock = wrapper.find("Clock");
+  it('renders Clock component correctly', () => {
+    const clock = wrapper.find('Clock').exists();
 
-    expect(clock).toBeDefined();
+    expect(clock).toBeTruthy();
   });
 
   it('operates filter callback function correctly', () => {
-    const filterAction = jest.fn();
-    const wrapper = shallow(<Navbar filter={filterAction} />);
-
     wrapper.find('RoomFilterContainer').prop('filter')('foo');
 
-    expect(filterAction).toHaveBeenCalledWith('foo');
+    expect(mockFilter).toHaveBeenCalledWith('foo');
   });
 });
