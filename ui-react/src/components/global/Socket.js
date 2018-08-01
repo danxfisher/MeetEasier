@@ -12,7 +12,6 @@ class Socket extends Component {
         now: new Date(),
         rooms: rooms
       });
-
     });
   }
 
