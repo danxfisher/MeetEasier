@@ -60,6 +60,8 @@ This application assumes you have:
 * A service account with access to all conference room mailboxes and EWS
 * A web server with Node.js installed to run the application
 
+**Please Note:** This application uses Basic Authentication which, by its very nature, is insecure.  I would strongly suggest using SSL where ever you decide to run this.
+
 ***
 
 ## Installation
