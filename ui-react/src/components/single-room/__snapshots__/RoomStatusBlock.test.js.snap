@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`COMPONENT renders correctly 1`] = `
+<div
+  className="columns small-8 left-col busy"
+>
+  <div
+    id="single-room__room-name"
+  >
+    Test Room
+  </div>
+  <div
+    id="single-room__room-status"
+  >
+    Busy
+  </div>
+  <div
+    id="single-room__details"
+  >
+    <div
+      id="single-room__meeting-title"
+    >
+      <span
+        id="single-room__next-up"
+      />
+      Meeting Subject
+    </div>
+  </div>
+  <div
+    id="single-room__meeting-time"
+  >
+    Mon 9:00 AM - 6:00 PM
+  </div>
+  <div
+    id="single-room__meeting-organizer"
+  >
+    John Doe
+  </div>
+</div>
+`;

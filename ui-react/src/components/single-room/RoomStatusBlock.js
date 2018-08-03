@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Details = ({room, details}) => (
-  <div>
+  <div id="single-room__details">
     { details.appointmentExists &&
       <div id="single-room__meeting-title">
         <span id="single-room__next-up">
@@ -16,7 +16,7 @@ const Details = ({room, details}) => (
 
 const Time = ({room, details}) => (
   <div id="single-room__meeting-time">
-    { details.timesPresent &&
+    { details.appointmentExists &&
       new Date(parseInt(room.Appointments[0].Start, 10)).toLocaleTimeString([], {weekday: 'short', hour: '2-digit', minute: '2-digit'}) + ' - ' + new Date(parseInt(room.Appointments[0].End, 10)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
     }
   </div>
@@ -68,7 +68,7 @@ const RoomStatusBlock = ({ config, details, room }) => (
 );
 
 RoomStatusBlock.propTypes = {
-  room: PropTypes.array,
+  room: PropTypes.object,
   details: PropTypes.object,
   config: PropTypes.object
 }
