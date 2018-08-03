@@ -26,7 +26,7 @@ describe('COMPONENT', () => {
 
     config = {
       statusBusy: 'Busy',
-      statusAvailable: 'Available'
+      statusAvailable: 'Open'
     };
   });
 
@@ -38,6 +38,28 @@ describe('COMPONENT', () => {
     const wrapper = mount(<RoomStatusBlock room={room} details={details} config={config} />);
 
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('renders room.Name', () => {
+    const wrapper = shallow(<RoomStatusBlock room={room} details={details} config={config} />);
+
+    const div = wrapper.find('#single-room__room-name').text();
+    expect(div).toBe('Test Room');
+  })
+
+  it('renders "Busy" if room.Busy is true', () => {
+    const wrapper = shallow(<RoomStatusBlock room={room} details={details} config={config} />);
+
+    const div = wrapper.find('#single-room__room-status').text();
+    expect(div).toBe('Busy');
+  });
+
+  it('renders "Open" if room.Busy is false', () => {
+    room.Busy = false;
+    const wrapper = shallow(<RoomStatusBlock room={room} details={details} config={config} />);
+
+    const div = wrapper.find('#single-room__room-status').text();
+    expect(div).toBe('Open');
   });
 
   // Details tests
