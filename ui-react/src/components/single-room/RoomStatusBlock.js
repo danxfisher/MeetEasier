@@ -8,7 +8,9 @@ const Details = ({room, details}) => (
         <span id="single-room__next-up">
           {details.nextUp}
         </span>
-        {room.Appointments[0].Subject}
+        <span id="single-room__meeting-subject">
+          {room.Appointments[0].Subject}
+        </span>
       </div>
     }
   </div>
@@ -20,7 +22,7 @@ const Time = ({room, details}) => (
       new Date(parseInt(room.Appointments[0].Start, 10)).toLocaleTimeString([], {weekday: 'short', hour: '2-digit', minute: '2-digit'}) + ' - ' + new Date(parseInt(room.Appointments[0].End, 10)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
     }
   </div>
-)
+);
 
 const Organizer = ({room, details}) => {
   return(
@@ -45,7 +47,7 @@ const RoomStatusBlock = ({ config, details, room }) => (
 );
 
 RoomStatusBlock.propTypes = {
-  room: PropTypes.object,
+  room: PropTypes.object.isRequired,
   details: PropTypes.object,
   config: PropTypes.object
 }

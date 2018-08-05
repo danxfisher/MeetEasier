@@ -23,7 +23,11 @@ exports[`COMPONENT renders correctly 1`] = `
       <span
         id="single-room__next-up"
       />
-      Meeting Subject
+      <span
+        id="single-room__meeting-subject"
+      >
+        Meeting Subject
+      </span>
     </div>
   </div>
   <div

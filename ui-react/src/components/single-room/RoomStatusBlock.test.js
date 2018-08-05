@@ -34,6 +34,13 @@ describe('COMPONENT', () => {
   // change to shallow when finished 
   // and remove this comment
   // *********************************
+
+  // NEED TO TEST (TODO):
+
+  // room.Appointments[0].Organizer
+  // room.Appointments[0].Start
+  // room.Appointments[0].End
+
   it('renders correctly', () => {
     const wrapper = mount(<RoomStatusBlock room={room} details={details} config={config} />);
 
@@ -45,13 +52,22 @@ describe('COMPONENT', () => {
 
     const div = wrapper.find('#single-room__room-name').text();
     expect(div).toBe('Test Room');
-  })
+  });
+
+  // room.Status tests
 
   it('renders "Busy" if room.Busy is true', () => {
     const wrapper = shallow(<RoomStatusBlock room={room} details={details} config={config} />);
 
     const div = wrapper.find('#single-room__room-status').text();
     expect(div).toBe('Busy');
+  });
+
+  it('renders "busy" class when room.Busy is true', () => {
+    const wrapper = shallow(<RoomStatusBlock room={room} details={details} config={config} />);
+
+    const div = wrapper.find('.busy').exists();
+    expect(div).toBeTruthy();    
   });
 
   it('renders "Open" if room.Busy is false', () => {
@@ -62,6 +78,15 @@ describe('COMPONENT', () => {
     expect(div).toBe('Open');
   });
 
+  it('renders "open" classes when room.Busy is true', () => {
+    room.Busy = false;
+    const wrapper = shallow(<RoomStatusBlock room={room} details={details} config={config} />);
+
+    const div = wrapper.find('.open').exists();
+    expect(div).toBeTruthy();    
+  });
+
+  // /room.Status tests
   // Details tests
 
   it('renders Details', () => {
@@ -82,9 +107,24 @@ describe('COMPONENT', () => {
     details.appointmentExists = false;
     const wrapper = mount(<RoomStatusBlock room={room} details={details} config={config} />);
 
-    const div= wrapper.find('#single-room__details').text();
+    const div = wrapper.find('#single-room__details').text();
     expect(div).toBe('');
-  })
+  });
+
+  it('renders details.nextUp texts', () => {
+    details.nextUp = 'Next up:';
+    const wrapper = mount(<RoomStatusBlock room={room} details={details} config={config} />);
+
+    const div = wrapper.find('#single-room__next-up').text();
+    expect(div).toBe('Next up:');
+  });
+
+  it('render room.Appointments[0].Subject', () => {
+    const wrapper = mount(<RoomStatusBlock room={room} details={details} config={config} />);
+
+    const div = wrapper.find('#single-room__meeting-subject').text();
+    expect(div).toBe('Meeting Subject');
+  });
 
   // /Details tests
   // Time tests
@@ -107,9 +147,16 @@ describe('COMPONENT', () => {
     details.appointmentExists = false;
     const wrapper = mount(<RoomStatusBlock room={room} details={details} config={config} />);
 
-    const div= wrapper.find('#single-room__meeting-time').text();
+    const div = wrapper.find('#single-room__meeting-time').text();
     expect(div).toBe('');
   })
+
+  it('receives number from room.Appointments[0].Start', () => {
+    const wrapper = mount(<RoomStatusBlock room={room} details={details} config={config} />);
+
+    const start = room.Appointments[0].Start;
+    expect(start).toBeNumber();
+  });
 
   // /Time tests
   // Organizer tests
