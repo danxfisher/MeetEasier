@@ -1,7 +1,9 @@
 import RoomStatusBlock from './RoomStatusBlock';
 
-describe('COMPONENT', () => {
+describe('RoomStatusBlock Component', () => {
+
   let room, details, config;
+  
   beforeEach(() => {
     room = {
       'Roomlist':'Test Roomlist',
@@ -11,7 +13,7 @@ describe('COMPONENT', () => {
       'Appointments':[
          {
             'Subject':'Meeting Subject',
-            'Organizer':'John Doe',
+            'Organizer':'Meeting Organizer',
             'Start':1532966400000,
             'End':1533344400000
          }
@@ -30,19 +32,8 @@ describe('COMPONENT', () => {
     };
   });
 
-  // *********************************
-  // change to shallow when finished 
-  // and remove this comment
-  // *********************************
-
-  // NEED TO TEST (TODO):
-
-  // room.Appointments[0].Organizer
-  // room.Appointments[0].Start
-  // room.Appointments[0].End
-
   it('renders correctly', () => {
-    const wrapper = mount(<RoomStatusBlock room={room} details={details} config={config} />);
+    const wrapper = shallow(<RoomStatusBlock room={room} details={details} config={config} />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -119,7 +110,7 @@ describe('COMPONENT', () => {
     expect(div).toBe('Next up:');
   });
 
-  it('render room.Appointments[0].Subject', () => {
+  it('renders room.Appointments[0].Subject', () => {
     const wrapper = mount(<RoomStatusBlock room={room} details={details} config={config} />);
 
     const div = wrapper.find('#single-room__meeting-subject').text();
@@ -152,11 +143,18 @@ describe('COMPONENT', () => {
   })
 
   it('receives number from room.Appointments[0].Start', () => {
-    const wrapper = mount(<RoomStatusBlock room={room} details={details} config={config} />);
+    const wrapper = shallow(<RoomStatusBlock room={room} details={details} config={config} />);
 
-    const start = room.Appointments[0].Start;
-    expect(start).toBeNumber();
+    const roomProps = wrapper.find('Time').props().room;
+    expect(roomProps.Appointments[0].Start).toBeNumber(); 
   });
+
+  it('receives number from room.Appointments[0].End', () => {
+    const wrapper = shallow(<RoomStatusBlock room={room} details={details} config={config} />);
+
+    const roomProps = wrapper.find('Time').props().room;
+    expect(roomProps.Appointments[0].End).toBeNumber(); 
+  })
 
   // /Time tests
   // Organizer tests
@@ -181,7 +179,14 @@ describe('COMPONENT', () => {
 
     const div= wrapper.find('#single-room__meeting-organizer').text();
     expect(div).toBe('');
-  })
+  });
+
+  it('renders room.Appointments[0].Oragnizer', () => {
+    const wrapper = mount(<RoomStatusBlock room={room} details={details} config={config} />);
+
+    const div = wrapper.find('#single-room__meeting-organizer').text();
+    expect(div).toBe('Meeting Organizer');
+  });
 
   // /Organizer tests
 });
