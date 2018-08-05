@@ -12,6 +12,12 @@ describe('Flightboard Navbar', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('renders navbar-title with text', () => {
+    const title = wrapper.find('#fb__navbar-title').text();
+
+    expect(title).not.toBeEmpty();
+  });
+
   it('renders RoomFilterContainer component correctly', () => {
     const filter = wrapper.find('RoomFilterContainer').exists();
 

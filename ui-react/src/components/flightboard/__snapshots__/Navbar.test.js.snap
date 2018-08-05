@@ -20,7 +20,11 @@ exports[`Flightboard Navbar renders correctly 1`] = `
           />
         </li>
         <li>
-          Conference Room Availability
+          <span
+            id="fb__navbar-title"
+          >
+            Conference Room Availability
+          </span>
           <br />
           <ul
             className="dropdown menu fb__dropdown"

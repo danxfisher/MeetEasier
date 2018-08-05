@@ -21,7 +21,7 @@ class Navbar extends Component {
                 <img src="img/logo.png" alt="Logo" />
               </li>
               <li>
-                {config.navbar.title}
+                <span id="fb__navbar-title">{config.navbar.title}</span>
                 <br />
                 <ul id="roomlist-filter" className="dropdown menu fb__dropdown" data-dropdown-menu>
                   <RoomFilterContainer filter={this.handleFilter}/>
