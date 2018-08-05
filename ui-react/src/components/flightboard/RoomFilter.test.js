@@ -15,13 +15,31 @@ describe('Flightboard RoomFilter', () => {
     }
   });
 
+  // filterTitle - test .current-filter
+  // filterAllTitle - roomlist-all
+
+
   it('renders correctly', () => {
     const wrapper = shallow(<RoomFilter {...props} filter={mockFilter} />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should have "loading" in list if response is false and error is false', () => {
+  it('renders filterTitle', () => {
+    const wrapper = shallow(<RoomFilter {...props} filter={mockFilter} />);
+
+    const filterTitle = wrapper.find('.current-filter').text();
+    expect(filterTitle).not.toBeEmpty();
+  });
+
+  it('renders filterAllTitle', () => {
+    const wrapper = shallow(<RoomFilter {...props} filter={mockFilter} />);
+
+    const filterAllTitle = wrapper.find('#roomlist-all').text();
+    expect(filterAllTitle).not.toBeEmpty();
+  });
+
+  it('renders "loading" in list if response is false and error is false', () => {
     props.response = false;
     const wrapper = shallow(<RoomFilter {...props} filter={mockFilter} />);
 
@@ -29,7 +47,7 @@ describe('Flightboard RoomFilter', () => {
     expect(loading).toBeTruthy();
   });
 
-  it('should have "loading" in list if response is true and error is true', () => {
+  it('renders "loading" in list if response is true and error is true', () => {
     props.error = true;
     const wrapper = shallow(<RoomFilter {...props} filter={mockFilter} />);
 
@@ -37,7 +55,7 @@ describe('Flightboard RoomFilter', () => {
     expect(loading).toBeTruthy();
   });
 
-  it('should have "loading" in list if response is false and error is true', () => {
+  it('renders "loading" in list if response is false and error is true', () => {
     props.error = true;
     props.response = false;
     const wrapper = shallow(<RoomFilter {...props} filter={mockFilter} />);
@@ -46,14 +64,14 @@ describe('Flightboard RoomFilter', () => {
     expect(loading).toBeTruthy();
   });
 
-  it('should not have "loading" in list if response is true and error is false', () => {
+  it('does not render "loading" in list if response is true and error is false', () => {
     const wrapper = shallow(<RoomFilter {...props} filter={mockFilter} />);
 
     const loading = wrapper.find('#roomlist__loading').exists();
     expect(loading).toBeFalsy();
   });
 
-  it('list should have three children', () => {
+  it('list renders with three children', () => {
     const wrapper = shallow(<RoomFilter {...props} filter={mockFilter} />);
     const listItems = wrapper.find('.fb__child-dropdown').children();
 
