@@ -67,7 +67,7 @@ describe('RoomStatusBlock Component', () => {
     const wrapper = shallow(<RoomStatusBlock room={room} details={details} config={config} />);
 
     const div = wrapper.find('#single-room__room-status').text();
-    expect(div).toBe('Open');
+    expect(div).toBe(config.statusAvailable);
   });
 
   it('renders "open" classes when room.Busy is true', () => {
@@ -104,18 +104,18 @@ describe('RoomStatusBlock Component', () => {
   });
 
   it('renders details.nextUp texts', () => {
-    details.nextUp = 'Next up:';
+    details.nextUp = config.nextUp + ':';
     const wrapper = mount(<RoomStatusBlock room={room} details={details} config={config} />);
 
     const div = wrapper.find('#single-room__next-up').text();
-    expect(div).toBe('Next up:');
+    expect(div).toBe(config.nextUp + ':');
   });
 
   it('renders room.Appointments[0].Subject', () => {
     const wrapper = mount(<RoomStatusBlock room={room} details={details} config={config} />);
 
     const div = wrapper.find('#single-room__meeting-subject').text();
-    expect(div).toBe('Meeting Subject');
+    expect(div).toBe(room.Appointments[0].Subject);
   });
 
   // /Details tests
@@ -186,7 +186,7 @@ describe('RoomStatusBlock Component', () => {
     const wrapper = mount(<RoomStatusBlock room={room} details={details} config={config} />);
 
     const div = wrapper.find('#single-room__meeting-organizer').text();
-    expect(div).toBe('Meeting Organizer');
+    expect(div).toBe(room.Appointments[0].Organizer);
   });
 
   // /Organizer tests
