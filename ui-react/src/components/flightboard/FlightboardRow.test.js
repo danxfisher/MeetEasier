@@ -271,6 +271,17 @@ describe('Flightboard Row Component', () => {
     expect(organizer).toEqual('');
   });
 
+  it('renders correct meeting organizer based on room.Appointments[0].Organizer', () => {
+    const wrapper = mount(
+      <MemoryRouter>
+        <FlightboardRow room={room} filter='' />
+      </MemoryRouter>
+    );
+
+    const organizer = wrapper.find('.meeting-organizer').text();
+    expect(organizer).toBe(room.Appointments[0].Organizer);
+  });
+
   // /Organizer tests
   // FullScreenIcon tests
 

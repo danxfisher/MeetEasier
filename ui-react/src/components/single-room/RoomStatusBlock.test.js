@@ -1,9 +1,9 @@
 import RoomStatusBlock from './RoomStatusBlock';
-//import * as config from '../../config/flightboard.config.js';
+import * as config from '../../config/singleRoom.config.js';
 
 describe('RoomStatusBlock Component', () => {
 
-  let room, details, config;
+  let room, details;
   
   beforeEach(() => {
     room = {
@@ -27,10 +27,10 @@ describe('RoomStatusBlock Component', () => {
       nextUp: ''
     };
 
-    config = {
-      statusBusy: 'Busy',
-      statusAvailable: 'Open'
-    };
+    // config = {
+    //   statusBusy: 'Busy',
+    //   statusAvailable: 'Open'
+    // };
   });
 
   it('renders correctly', () => {
@@ -43,7 +43,7 @@ describe('RoomStatusBlock Component', () => {
     const wrapper = shallow(<RoomStatusBlock room={room} details={details} config={config} />);
 
     const div = wrapper.find('#single-room__room-name').text();
-    expect(div).toBe('Test Room');
+    expect(div).toBe(room.Name);
   });
 
   // room.Status tests
@@ -52,7 +52,7 @@ describe('RoomStatusBlock Component', () => {
     const wrapper = shallow(<RoomStatusBlock room={room} details={details} config={config} />);
 
     const div = wrapper.find('#single-room__room-status').text();
-    expect(div).toBe('Busy');
+    expect(div).toBe(config.statusBusy);
   });
 
   it('renders "busy" class when room.Busy is true', () => {
