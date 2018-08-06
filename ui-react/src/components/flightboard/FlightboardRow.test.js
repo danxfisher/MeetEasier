@@ -23,6 +23,10 @@ describe('Flightboard Row Component', () => {
     };
   });
 
+  // meetingClass
+  // statusText
+  // all room.*
+
   it('renders correctly', () => {
     const wrapper = mount(
       <MemoryRouter>
@@ -33,11 +37,74 @@ describe('Flightboard Row Component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  // roomStatusClass
+
+  it('renders correct roomStatusClass when room.Busy is false', () => {
+    room.Busy = false;
+    const wrapper = shallow(<FlightboardRow room={room} filter='' />);
+
+    const div = wrapper.find('.test-room .meeting-room .meeting-room-busy').exists();
+    expect(div).not.toBeTruthy();
+  });
+
+  it('renders correct roomStatusClass when room.Busy is true', () => {
+    const wrapper = shallow(<FlightboardRow room={room} filter='' />);
+
+    const div = wrapper.find('.test-room .meeting-room .meeting-room-busy').exists();
+    expect(div).toBeTruthy();
+  });
+
+  it('renders correct roomStatusClass when room.ErrorMessage is not empty', () => {
+    room.ErrorMessage = 'Houston, we have a problem.';
+    const wrapper = shallow(<FlightboardRow room={room} filter='' />);
+
+    const div = wrapper.find('.test-room .meeting-room .meeting-room-error').exists();
+    expect(div).toBeTruthy();
+  });
+
+  // /roomStatusClass
+  // Status tests
+
   it('renders Status', () => {
     const wrapper = shallow(<FlightboardRow room={room} filter='' />);
 
     const status = wrapper.find('Status').exists();
     expect(status).toBeTruthy();
+  });
+
+  it('renders correct statusClass when room.Busy is false', () => {
+    room.Busy = false;
+    const wrapper = mount(
+      <MemoryRouter>
+        <FlightboardRow room={room} filter='' />
+      </MemoryRouter>
+    );
+
+    const div = wrapper.find('.meeting-open').exists();
+    expect(div).toBeTruthy();
+  });
+
+  it('renders correct statusClass when room.Busy is true', () => {
+    const wrapper = mount(
+      <MemoryRouter>
+        <FlightboardRow room={room} filter='' />
+      </MemoryRouter>
+    );
+
+    const div = wrapper.find('.meeting-busy').exists();
+    expect(div).toBeTruthy();
+  });
+
+  it('renders correct statusClass when room.ErrorMessage is not empty', () => {
+    room.ErrorMessage = 'Houston, we have a problem.';
+    const wrapper = mount(
+      <MemoryRouter>
+        <FlightboardRow room={room} filter='' />
+      </MemoryRouter>
+    );
+
+    const div = wrapper.find('.meeting-error').exists();
+    expect(div).toBeTruthy();
   });
 
   it('displays busy when room.Busy is true', () => {
@@ -77,6 +144,9 @@ describe('Flightboard Row Component', () => {
     expect(error).toBeTruthy();
   });
 
+  // /Status tests
+  // Subject tests
+
   it('renders Subject', () => {
     const wrapper = shallow(<FlightboardRow room={room} filter='' />);
 
@@ -96,6 +166,9 @@ describe('Flightboard Row Component', () => {
     const subject = wrapper.find('Subject').text();
     expect(subject).toEqual('');
   });
+
+  // /Subject tests
+  // Time tests
 
   it('renders Time', () => {
     const wrapper = shallow(<FlightboardRow room={room} filter='' />);
@@ -117,6 +190,9 @@ describe('Flightboard Row Component', () => {
     expect(time).toEqual('');
   });
 
+  // /Time tests
+  // Organizer tests
+
   it('renders Organizer', () => {
     const wrapper = shallow(<FlightboardRow room={room} filter='' />);
 
@@ -136,6 +212,9 @@ describe('Flightboard Row Component', () => {
     const organizer = wrapper.find('Organizer').text();
     expect(organizer).toEqual('');
   });
+
+  // /Organizer tests
+  // FullScreenIcon tests
 
   it('renders FullScreenIcon Link', () => {
     const wrapper = mount(
@@ -160,6 +239,8 @@ describe('Flightboard Row Component', () => {
     const link = wrapper.find('.meeting-fullscreen a .fi-monitor').exists();
     expect(link).toBeFalsy();
   });
+
+  // /FullScreenIcon tests
 
   it('adds filter class based on roomlist', () => {
     const wrapper = shallow(<FlightboardRow room={room} filter='test-roomlist' />);

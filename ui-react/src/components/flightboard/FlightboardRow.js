@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import * as config from '../../config/flightboard.config.js';
 
 const Status = ({ room }) => {
-  const meetingClass = room.ErrorMessage
+  const statusClass = room.ErrorMessage
     ? 'meeting-error'
     : room.Busy
       ? 'meeting-busy'
@@ -17,7 +17,7 @@ const Status = ({ room }) => {
       : config.board.statusAvailable;
 
   return (
-    <div className={meetingClass} title={room.ErrorMessage || ''}>
+    <div className={statusClass} title={room.ErrorMessage || ''}>
       {statusText}
     </div>
   );
@@ -44,7 +44,9 @@ const Time = ({ room }) => {
   return (
     <div className={room.RoomAlias + '-time meeting-time'}>
       {room.Appointments.length > 0 &&
-        new Date(parseInt(room.Appointments[0].Start, 10)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) + ' - ' + new Date(parseInt(room.Appointments[0].End, 10)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
+        new Date(parseInt(room.Appointments[0].Start, 10)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) 
+        + ' - ' + 
+        new Date(parseInt(room.Appointments[0].End, 10)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
       }
     </div>
   );
@@ -82,15 +84,15 @@ const FlightboardRow = ({ room, filter }) => {
   const roomlist = 'roomlist-' + room.Roomlist.toLowerCase().replace(/\s+/g, "-");
 
   // set row class based on meet room status
-  let meetingRoomClass = room.RoomAlias + ' meeting-room';
-  meetingRoomClass += room.Busy ? ' meeting-room-busy' : '';
-  meetingRoomClass += room.ErrorMessage ? ' meeting-room-error' : '';
+  let roomStatusClass = room.RoomAlias + ' meeting-room';
+  roomStatusClass += room.Busy ? ' meeting-room-busy' : '';
+  roomStatusClass += room.ErrorMessage ? ' meeting-room-error' : '';
 
   return (
     <div className={'meeting-room__row row-padder ' + roomlist} style={filter === roomlist || filter === 'roomlist-all' || filter === '' ? styles.show : styles.hide}>
       <div className="row">
         <div className="medium-12 columns">
-          <div className={meetingRoomClass}>
+          <div className={roomStatusClass}>
             <div className="row valign-middle">
 
               <div className={room.RoomAlias + '-status meeting-room__status medium-2 columns'}>
