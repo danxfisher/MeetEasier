@@ -17,7 +17,7 @@ const Status = ({ room }) => {
       : config.board.statusAvailable;
 
   return (
-    <div className={statusClass} title={room.ErrorMessage || ''}>
+    <div className={room.RoomAlias + '-meeting-status ' + statusClass} title={room.ErrorMessage || ''}>
       {statusText}
     </div>
   );

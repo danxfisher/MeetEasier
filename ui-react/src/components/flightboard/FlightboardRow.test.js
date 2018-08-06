@@ -1,5 +1,5 @@
 import FlightboardRow from './FlightboardRow';
-
+import * as config from '../../config/flightboard.config.js';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('Flightboard Row Component', () => {
@@ -23,8 +23,6 @@ describe('Flightboard Row Component', () => {
     };
   });
 
-  // meetingClass
-  // statusText
   // all room.*
 
   it('renders correctly', () => {
@@ -107,6 +105,41 @@ describe('Flightboard Row Component', () => {
     expect(div).toBeTruthy();
   });
 
+  it('renders statusText correctly when room.Busy is true', () => {
+    const wrapper = mount(
+      <MemoryRouter>
+        <FlightboardRow room={room} filter='' />
+      </MemoryRouter>
+    );
+
+    const status = wrapper.find('.test-room-meeting-status').text();
+    expect(status).toBe(config.board.statusBusy);
+  });
+
+  it('renders statusText correctly when room.Busy is false', () => {
+    room.Busy = false;
+    const wrapper = mount(
+      <MemoryRouter>
+        <FlightboardRow room={room} filter='' />
+      </MemoryRouter>
+    );
+
+    const status = wrapper.find('.test-room-meeting-status').text();
+    expect(status).toBe(config.board.statusAvailable);
+  });
+
+  it('renders statusText correctly when room.ErrorMessage is not empty', () => {
+    room.ErrorMessage = 'Houston, we have a problem.';
+    const wrapper = mount(
+      <MemoryRouter>
+        <FlightboardRow room={room} filter='' />
+      </MemoryRouter>
+    );
+
+    const status = wrapper.find('.test-room-meeting-status').text();
+    expect(status).toBe(config.board.statusError);
+  });
+
   it('displays busy when room.Busy is true', () => {
     const wrapper = mount(
       <MemoryRouter>
@@ -167,6 +200,17 @@ describe('Flightboard Row Component', () => {
     expect(subject).toEqual('');
   });
 
+  it('renders correct meeting subject based on room.Appointments[0].Subject', () => {
+    const wrapper = mount(
+      <MemoryRouter>
+        <FlightboardRow room={room} filter='' />
+      </MemoryRouter>
+    );
+
+    const subject = wrapper.find('.meeting-subject').text();
+    expect(subject).toBe(room.Appointments[0].Subject);
+  });
+
   // /Subject tests
   // Time tests
 
@@ -188,6 +232,20 @@ describe('Flightboard Row Component', () => {
 
     const time = wrapper.find('Time').text();
     expect(time).toEqual('');
+  });
+
+  it('receives number from room.Appointments[0].Start', () => {
+    const wrapper = shallow(<FlightboardRow room={room} filter='' />);
+
+    const roomProps = wrapper.find('Time').props().room;
+    expect(roomProps.Appointments[0].Start).toBeNumber(); 
+  });
+
+  it('receives number from room.Appointments[0].End', () => {
+    const wrapper = shallow(<FlightboardRow room={room} filter='' />);
+
+    const roomProps = wrapper.find('Time').props().room;
+    expect(roomProps.Appointments[0].End).toBeNumber(); 
   });
 
   // /Time tests

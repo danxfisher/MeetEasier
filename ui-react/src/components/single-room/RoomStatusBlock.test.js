@@ -1,4 +1,5 @@
 import RoomStatusBlock from './RoomStatusBlock';
+//import * as config from '../../config/flightboard.config.js';
 
 describe('RoomStatusBlock Component', () => {
 
@@ -154,7 +155,7 @@ describe('RoomStatusBlock Component', () => {
 
     const roomProps = wrapper.find('Time').props().room;
     expect(roomProps.Appointments[0].End).toBeNumber(); 
-  })
+  });
 
   // /Time tests
   // Organizer tests

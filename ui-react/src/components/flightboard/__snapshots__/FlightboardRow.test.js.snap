@@ -25,7 +25,7 @@ exports[`Flightboard Row Component renders correctly 1`] = `
             className="test-room-status meeting-room__status medium-2 columns"
           >
             <div
-              className="meeting-busy"
+              className="test-room-meeting-status meeting-busy"
               title=""
             >
               Busy
