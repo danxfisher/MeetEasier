@@ -46,7 +46,6 @@ class RoomFilterContainer extends Component {
       <RoomFilter {...this.state} filter={this.handleFilter} />
     );
   }
-
 }
 
 export default RoomFilterContainer;
