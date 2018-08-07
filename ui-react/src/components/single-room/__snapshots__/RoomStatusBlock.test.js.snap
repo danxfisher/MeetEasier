@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RoomStatusBlock Component renders correctly 1`] = `
+<div
+  className="columns small-8 left-col busy"
+>
+  <div
+    id="single-room__room-name"
+  >
+    Test Room
+  </div>
+  <div
+    id="single-room__room-status"
+  >
+    Busy
+  </div>
+  <Details
+    details={
+      Object {
+        "appointmentExists": true,
+        "nextUp": "",
+      }
+    }
+    room={
+      Object {
+        "Appointments": Array [
+          Object {
+            "End": 1533344400000,
+            "Organizer": "Meeting Organizer",
+            "Start": 1532966400000,
+            "Subject": "Meeting Subject",
+          },
+        ],
+        "Busy": true,
+        "Email": "email@email.com",
+        "Name": "Test Room",
+        "RoomAlias": "test-room",
+        "Roomlist": "Test Roomlist",
+      }
+    }
+  />
+  <Time
+    details={
+      Object {
+        "appointmentExists": true,
+        "nextUp": "",
+      }
+    }
+    room={
+      Object {
+        "Appointments": Array [
+          Object {
+            "End": 1533344400000,
+            "Organizer": "Meeting Organizer",
+            "Start": 1532966400000,
+            "Subject": "Meeting Subject",
+          },
+        ],
+        "Busy": true,
+        "Email": "email@email.com",
+        "Name": "Test Room",
+        "RoomAlias": "test-room",
+        "Roomlist": "Test Roomlist",
+      }
+    }
+  />
+  <Organizer
+    details={
+      Object {
+        "appointmentExists": true,
+        "nextUp": "",
+      }
+    }
+    room={
+      Object {
+        "Appointments": Array [
+          Object {
+            "End": 1533344400000,
+            "Organizer": "Meeting Organizer",
+            "Start": 1532966400000,
+            "Subject": "Meeting Subject",
+          },
+        ],
+        "Busy": true,
+        "Email": "email@email.com",
+        "Name": "Test Room",
+        "RoomAlias": "test-room",
+        "Roomlist": "Test Roomlist",
+      }
+    }
+  />
+</div>
+`;

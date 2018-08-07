@@ -4,17 +4,22 @@
   "private": true,
   "dependencies": {
     "jquery": "3.2.1",
-    "prop-types": "^15.6.2",
+    "prop-types": "15.6.2",
     "react": "16.0.0",
     "react-dom": "16.0.0",
     "react-router-dom": "4.2.2",
-    "react-scripts": "1.0.14",
+    "react-scripts": "1.1.4",
     "socket.io-client": "2.0.3"
   },
   "devDependencies": {
     "babel-core": "6.25.0",
     "babel-preset-env": "1.6.0",
-    "babel-preset-react": "6.24.1"
+    "babel-preset-react": "6.24.1",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
+    "enzyme-to-json": "3.3.4",
+    "jest-extended": "^0.8.1",
+    "sinon": "6.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as config from '../../config/flightboard.config.js';
 
 import Clock from './Clock';
-import RoomFilter from './RoomFilter';
-
-let fbConfig = require('../../config/flightboard.config.js');
+import RoomFilterContainer from './RoomFilterContainer';
 
 class Navbar extends Component {
 
@@ -22,10 +21,10 @@ class Navbar extends Component {
                 <img src="img/logo.png" alt="Logo" />
               </li>
               <li>
-                {fbConfig.navbar.title}
+                <span id="fb__navbar-title">{config.navbar.title}</span>
                 <br />
                 <ul id="roomlist-filter" className="dropdown menu fb__dropdown" data-dropdown-menu>
-                  <RoomFilter filter={this.handleFilter}/>
+                  <RoomFilterContainer filter={this.handleFilter}/>
                 </ul>
               </li>
             </ul>

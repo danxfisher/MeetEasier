@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Flightboard Row Component renders correctly 1`] = `
+<div
+  className="meeting-room__row row-padder roomlist-test-roomlist"
+  style={
+    Object {
+      "display": "block",
+    }
+  }
+>
+  <div
+    className="row"
+  >
+    <div
+      className="medium-12 columns"
+    >
+      <div
+        className="test-room meeting-room meeting-room-busy"
+      >
+        <div
+          className="row valign-middle"
+        >
+          <div
+            className="test-room-status meeting-room__status medium-2 columns"
+          >
+            <div
+              className="test-room-meeting-status meeting-busy"
+              title=""
+            >
+              Busy
+            </div>
+          </div>
+          <div
+            className="medium-3 columns"
+          >
+            <div
+              className="test-room-name meeting-room__name"
+            >
+              Test Room
+            </div>
+          </div>
+          <div
+            className="medium-6 columns"
+          >
+            <div
+              className="test-room-meeting-information"
+            >
+              <div>
+                <span
+                  className="test-room-meeting-upcoming meeting-upcoming"
+                />
+                <span
+                  className="test-room-subject meeting-subject"
+                >
+                  Meeting Subject
+                </span>
+              </div>
+            </div>
+            <div
+              className="test-room-time meeting-time"
+            >
+              9:00 AM - 6:00 PM
+            </div>
+            <div
+              className="test-room-organizer meeting-organizer"
+            >
+              John Doe
+            </div>
+          </div>
+          <div
+            className="medium-1 columns"
+          >
+            <div
+              className="meeting-fullscreen"
+            >
+              <a
+                href="/single-room/test-room"
+                onClick={[Function]}
+                target="_blank"
+              >
+                <i
+                  className="fi-monitor"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

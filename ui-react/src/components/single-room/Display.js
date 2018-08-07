@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as config from '../../config/singleRoom.config.js';
 
 import RoomStatusBlock from './RoomStatusBlock';
 import Sidebar from './Sidebar';
 import Socket from '../global/Socket';
 import Spinner from '../global/Spinner';
-
-let config = require('../../config/singleRoom.config.js');
 
 class Display extends Component {
   constructor(props) {
