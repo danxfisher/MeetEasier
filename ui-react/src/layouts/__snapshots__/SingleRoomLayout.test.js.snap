@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SingleRoomLayout Component renders correctly 1`] = `
+<div
+  id="single-room__wrap"
+>
+  <Display
+    alias="test-room"
+  />
+</div>
+`;
