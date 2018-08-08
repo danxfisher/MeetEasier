@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Display from '../../components/single-room/Display';
-import NotFound from '../../components/global/NotFound';
+import Display from '../components/single-room/Display';
+import NotFound from '../components/global/NotFound';
 
 class SingleRoomLayout extends Component {
   constructor(props) {
@@ -14,17 +14,15 @@ class SingleRoomLayout extends Component {
   render () {
     const { roomAlias } = this.state;
     return (
-
       <div id="single-room__wrap">
         { roomAlias ?
-          <Display alias={this.state.roomAlias} />
+          <Display alias={roomAlias} />
         :
           <div id="error-wrap">
             <NotFound />
           </div>
         }
       </div>
-
     )
   }
 }
