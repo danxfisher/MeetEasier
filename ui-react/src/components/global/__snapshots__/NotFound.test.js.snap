@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound component renders correctly 1`] = `
+<div
+  id="error-text"
+>
+  <div
+    id="error-header"
+  >
+    Sorry :(
+  </div>
+  Either there was an error in processing or this page does not exist.
+</div>
+`;

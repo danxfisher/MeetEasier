@@ -13,7 +13,7 @@ class FlightboardLayout extends Component {
     this.handleFilter = this.handleFilter.bind(this);
   }
 
-  handleFilter(filterValue){
+  handleFilter(filterValue) {
     this.setState({
       filter: filterValue
     });

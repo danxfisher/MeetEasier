@@ -13,5 +13,13 @@ describe('Flightboard Clock', () => {
     const time = wrapper.find('#clock').text();
 
     expect(time).not.toEqual('');
-  })
+  });
+
+  it('componentWillUnmount should be called on unmount', () => {
+    const wrapper = shallow(<Clock />);
+    const componentWillUnmount = jest.spyOn(wrapper.instance(), 'componentWillUnmount');
+    wrapper.unmount();
+    expect(componentWillUnmount).toHaveBeenCalled();
+  });
+
 });

@@ -27,6 +27,11 @@ describe('FlightboardLayout Component', () => {
 
     const wrapper = shallow(<FlightboardLayout />);
     wrapper.find('Navbar').prop('filter')('foo');
+    wrapper.setState({ filter: 'foo' });
+
+    // wrapper.find('Navbar').simulate('filter', 'foo');
+    const state = wrapper.instance().state;
+    expect(state).toEqual({ filter: 'foo' });
 
     expect(mockFn).toHaveBeenCalledWith('foo');
   });

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner component renders correctly 1`] = `
+<p
+  id="fb__spinner-wrap"
+>
+  <img
+    alt="Loading..."
+    id="fb__spinner"
+    src="/svgs/spinner.svg"
+  />
+</p>
+`;
