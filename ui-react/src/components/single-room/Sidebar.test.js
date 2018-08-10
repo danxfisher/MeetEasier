@@ -73,7 +73,7 @@ describe('Sidebar Component', () => {
     expect(table).toBeEmpty();
   });
 
-  it('renders room.Appointments[1].Subject when details.upcomingAppoints is true' , () => {
+  it('renders room.Appointments[1].Subject when details.upcomingAppointments is true' , () => {
     details.upcomingAppointments = true;
     const wrapper = shallow(<Sidebar room={room} details={details} config={config} />);
 
@@ -81,14 +81,14 @@ describe('Sidebar Component', () => {
     expect(div).toBe(room.Appointments[1].Subject);
   });
 
-  it('does not render room.Appointments[1].Subject when details.upcomingAppoints is false' , () => {
+  it('does not render room.Appointments[1].Subject when details.upcomingAppointments is false' , () => {
     const wrapper = shallow(<Sidebar room={room} details={details} config={config} />);
 
     const div = wrapper.find('.up__meeting-title').exists();
     expect(div).toBeFalsy();
   });
 
-  it('renders meeting time when details.upcomingAppoints is true' , () => {
+  it('renders meeting time when details.upcomingAppointments is true' , () => {
     details.upcomingAppointments = true;
     const wrapper = shallow(<Sidebar room={room} details={details} config={config} />);
 
@@ -96,7 +96,17 @@ describe('Sidebar Component', () => {
     expect(div).not.toBeEmpty();
   });
 
-  it('does not render meeting time when details.upcomingAppoints is false' , () => {
+  it('renders meeting time empty when times are missing' , () => {
+    details.upcomingAppointments = true;
+    room.Appointments[1].Start = '';
+    room.Appointments[1].End = '';
+    const wrapper = shallow(<Sidebar room={room} details={details} config={config} />);
+
+    const div = wrapper.find('.up__meeting-time').text();
+    expect(div).toBeEmpty();
+  });
+
+  it('does not render meeting time when details.upcomingAppointments is false' , () => {
     const wrapper = shallow(<Sidebar room={room} details={details} config={config} />);
 
     const div = wrapper.find('.up__meeting-time').exists();
