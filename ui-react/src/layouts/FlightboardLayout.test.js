@@ -21,20 +21,20 @@ describe('FlightboardLayout Component', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('operates filter callback function correctly', () => {
-  //   let mockFn = jest.fn();
-  //   FlightboardLayout.prototype.handleFilter = mockFn;
+  it('calls handleFilter and sets state', () => {
+    const wrapper = shallow(<FlightboardLayout />);
 
-  //   const wrapper = shallow(<FlightboardLayout />);
-  //   wrapper.find('Navbar').prop('filter')('foo');
-  //   wrapper.setState({ filter: 'foo' });
+    let mockFn = jest.fn();
+    FlightboardLayout.prototype.handleFilter = mockFn;
 
-  //   // wrapper.find('Navbar').simulate('filter', 'foo');
-  //   const state = wrapper.instance().state;
-  //   expect(state).toEqual({ filter: 'foo' });
+    const instance = wrapper.instance();
+    const handleFilter = jest.spyOn(instance, 'handleFilter');
+    
+    instance.handleFilter('foo');
 
-  //   expect(mockFn).toHaveBeenCalledWith('foo');
-  // });
+    expect(wrapper.state('filter')).toBe('foo');
+    expect(handleFilter).toHaveBeenCalledWith('foo');
+  });
 
   it('renders Flightboard component', () => {
     const wrapper = shallow(<FlightboardLayout />);
