@@ -6,17 +6,20 @@ class Clock extends Component {
     this.state = {
       date: new Date()
     }
+
+    this.tick = this.tick.bind(this);
   }
 
-  tick = () => {
+  tick() {
     this.setState ({
       date: new Date()
-    })
+    });
   }
 
   componentDidMount = () => {
     this.timerID = setInterval(
-      () => this.tick(),
+      // () => this.tick(),
+      this.tick(),
       1000
     );
   }
