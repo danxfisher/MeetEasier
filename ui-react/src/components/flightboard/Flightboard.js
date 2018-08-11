@@ -14,9 +14,11 @@ class Flightboard extends Component {
       now: new Date(),
       rooms: []
     }
+
+    this.handleSocket = this.handleSocket.bind(this);
   }
 
-  getRoomData = () => {
+  getRoomData() {
     return fetch('/api/rooms')
       .then((response) => response.json())
       .then((data) => {
@@ -34,15 +36,15 @@ class Flightboard extends Component {
             rooms: data
           });
         }
-      })
+      });
   }
 
-  handleSocket = (socketResponse) => {
+  handleSocket(socketResponse) {
     this.setState({
       response: socketResponse.response,
       now: socketResponse.now,
       rooms: socketResponse.rooms
-    })
+    });
   }
 
   componentDidMount = () => {
