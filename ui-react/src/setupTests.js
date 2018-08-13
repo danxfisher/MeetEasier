@@ -17,3 +17,4 @@ global.shallow = shallow;
 global.render = render;
 global.mount = mount;
 global.sinon = sinon;
+global.fetch = jest.fn();

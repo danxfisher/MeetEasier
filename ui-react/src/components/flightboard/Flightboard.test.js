@@ -9,7 +9,6 @@ describe('Flightboard component', () => {
 
   it('renders correctly', () => {
     const wrapper = shallow(<Flightboard />);
-    wrapper.state({ response: true, error: true });
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -19,7 +18,7 @@ describe('Flightboard component', () => {
   });
 
   it('calls getRoomData', () => {
-    const wrapper = shallow(<Flightboard />);
+    const wrapper = shallow(<Flightboard />); 
 
     const instance = wrapper.instance();
     const getRoomData = jest.spyOn(instance, 'getRoomData');
@@ -47,7 +46,7 @@ describe('Flightboard component', () => {
 
   it('renders credentials error if response is true and error is true', () => {
     const wrapper = shallow(<Flightboard />);
-    wrapper.state({ 
+    wrapper.setState({ 
       response: true, 
       error: true,
       rooms: {
@@ -55,8 +54,8 @@ describe('Flightboard component', () => {
       }
     });
 
-    const error = wrapper.find('.credentials-error').exists();
-    expect(error).not.toBeTruthy();
+    const error = wrapper.find('.credentials-error').text();
+    expect(error).toBe(wrapper.state().rooms.error);
   });
 
   // it('renders credentials error if response is true and error is true', () => {
