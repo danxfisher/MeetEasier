@@ -79,10 +79,12 @@ module.exports = function (callback) {
         ? start < now && now < end
         : room.Busy;
 
-      let isAppointmentPrivate = appt.Sensitivity > 0 ? true : false;
+      let isAppointmentPrivate = appt.Sensitivity === 'Normal' ? false : true;
+
+      let subject = isAppointmentPrivate ? 'Private' : appt.Subject;
 
       room.Appointments.push({
-        "Subject" : appt.Subject,
+        "Subject" : subject,
         "Organizer" : appt.Organizer.Name,
         "Start" : start,
         "End"   : end,
