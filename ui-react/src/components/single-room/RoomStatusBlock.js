@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 
 const Details = ({room, details}) => (
+
   <div id="single-room__details">
     { details.appointmentExists &&
       <div id="single-room__meeting-title">
@@ -66,7 +67,7 @@ function ButtonControl(props){
   let room = props.room;
   let details = props.details;
   var moment = require('moment');
-  try{
+  //try{
     if (room.Busy){
       let currentAppointmentEnd = new Date(parseInt(room.Appointments[0].End, 10));
       if (room.Appointments.length > 1){
@@ -219,19 +220,29 @@ function ButtonControl(props){
         );
       }
     }
-  }
-  catch (TypeError){
-    setTimeout(reloadPage, 3000);
-  }
+  //}
+  //catch (TypeError){
+  //  setTimeout(reloadPage, 2000);
+  //}
 }
 const RoomStatusBlock = ({ config, details, room }) => (
   <div className={room.Busy ? 'columns small-8 left-col busy' : 'columns small-8 left-col open'}>
+  <table id="single-room__logo-name-table">
+    <tr><td id="single-room__org-logo-td">
+    <div id="single-room__org-logo">
+      <img src="../img/logo2.png" alt="Logo" id="single-room__org-logo__img" />
+    </div>
+    </td>
+    <td>
     <div id="single-room__room-name">{room.Name}</div>
+    </td></tr>
+    </table>
     <div id="single-room__room-status">{room.Busy ? config.statusBusy : config.statusAvailable}</div>
-    <ButtonControl room={room} details={details}/>
-    <Details room={room} details={details} />
-    <Time room={room} details={details} />
-    <Organizer room={room} details={details} />
+    
+      <ButtonControl room={room} details={details}/>
+      <Details room={room} details={details} />
+      <Time room={room} details={details} />
+      <Organizer room={room} details={details} />
     
   </div>
 );
