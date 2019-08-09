@@ -14,9 +14,9 @@
   "dependencies": {
     "ews-javascript-api": "0.9.4",
     "express": "4.16.2",
-    "grunt": "1.0.1",
+    "grunt": "1.0.4",
     "grunt-contrib-sass": "1.0.0",
-    "grunt-contrib-watch": "1.0.0",
+    "grunt-contrib-watch": "1.1.0",
     "socket.io": "2.2.0"
   },
   "devDependencies": {}
