@@ -7,6 +7,29 @@ import Sidebar from './Sidebar';
 import Socket from '../global/Socket';
 import Spinner from '../global/Spinner';
 
+class ErrorHandler extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { errorOccurred: false }
+  }
+
+  componentDidCatch(error, info) {
+    this.setState({ errorOccurred: true })
+    console.log(error);
+  }
+  render() {
+    console.log("ErrorHandler RENDER");
+    if (this.state.errorOccurred){
+
+      window.location.reload();
+     return <div><h2>SOMETHING WENT WRONG - RELOADING</h2></div> 
+    }
+    else{
+       return this.props.children; 
+    } 
+  }
+}
+
 class Display extends Component {
   constructor(props) {
     super(props);
@@ -36,10 +59,9 @@ class Display extends Component {
 
   processRoomDetails = () => {
     const { rooms, roomAlias } = this.state;
-
     let roomArray = rooms.filter(item => item.RoomAlias === roomAlias);
     let room = roomArray[0];
-
+	
     // 1) ensure that appointments exist for the room
     // 2) check if there are more than 1 upcoming appointments
     // 3) check if there are times in the room.Start & room.End
@@ -51,7 +73,6 @@ class Display extends Component {
           appointmentExists: true
         }
       }));
-
       if (room.Appointments.length > 1) {
         this.setState(prevState => ({
           roomDetails: {
@@ -76,6 +97,9 @@ class Display extends Component {
               nextUp: config.nextUp + ': '
             }
           }));
+		  
+
+		    console.log("ROOM IS FREE");
         }
         else {
           this.setState(prevState => ({
@@ -84,6 +108,7 @@ class Display extends Component {
               nextUp: ''
             }
           }));
+		    console.log("ROOM IS BUSY");
         }
       }
     }
@@ -109,6 +134,7 @@ class Display extends Component {
     const { response, room, roomDetails } = this.state;
 
     return (
+      <ErrorHandler>
       <div>
         <Socket response={this.handleSocket}/>
 
@@ -121,6 +147,7 @@ class Display extends Component {
           <Spinner />
         }
       </div>
+      </ErrorHandler>
     );
   }
 }
