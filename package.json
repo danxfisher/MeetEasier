@@ -12,12 +12,12 @@
     "start-ui-dev": "cd ui-react && npm start"
   },
   "dependencies": {
-    "ews-javascript-api": "0.8.0",
+    "ews-javascript-api": "0.9.4",
     "express": "4.16.2",
     "grunt": "1.0.1",
     "grunt-contrib-sass": "1.0.0",
     "grunt-contrib-watch": "1.0.0",
-    "socket.io": "1.7.4"
+    "socket.io": "2.2.0"
   },
   "devDependencies": {}
 }
