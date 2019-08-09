@@ -159,7 +159,7 @@ body {
         font-size: 3vw; }
       #single-room__wrap .full-height .left-col #single-room__room-status {
         text-transform: uppercase;
-        padding: 4% 0;
+        padding: 1% 0;
         font-size: 18vw;
         font-weight: lighter; }
       #single-room__wrap .full-height .left-col #single-room__meeting-title {
@@ -214,6 +214,21 @@ body {
         font-weight: bold;
         font-size: 3.2vw;
         padding-bottom: 25px; }
+
+.btn {
+  border-radius: 5px;
+  border: 1px solic black;
+  font-size: 22px;
+  padding: 5px 5px;
+  text-align: center;
+  background-color: grey;
+  display: inline-block;
+  height: 50px;
+  width: 90%;
+}
+.btn:active {
+  background-color: purple;
+}
 
 @media screen and (min-width: 40em) {
   .valign-middle {
