@@ -115,7 +115,7 @@ module.exports = function (callback) {
 
       roomAddresses.forEach(function(room, index, array){
         var calendarFolderId = new ews.FolderId(ews.WellKnownFolderName.Calendar, new ews.Mailbox(room.Email));
-        var view = new ews.CalendarView(ews.DateTime.Now, new ews.DateTime(ews.DateTime.Now.TotalMilliSeconds + ews.TimeSpan.FromHours(240).asMilliseconds()), 6);
+        var view = new ews.CalendarView(ews.DateTime.Now, new ews.DateTime(ews.DateTime.Now.TotalMilliSeconds + 576000000), 6);
         exch.FindAppointments(calendarFolderId, view).then((response) => {
           fillRoomData(context, room, response.Items);
         }, (error) => {
