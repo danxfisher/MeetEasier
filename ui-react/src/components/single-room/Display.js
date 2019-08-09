@@ -18,7 +18,6 @@ class ErrorHandler extends React.Component {
     console.log(error);
   }
   render() {
-    console.log("ErrorHandler RENDER");
     if (this.state.errorOccurred){
 
       window.location.reload();
