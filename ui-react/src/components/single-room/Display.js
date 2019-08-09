@@ -97,9 +97,6 @@ class Display extends Component {
               nextUp: config.nextUp + ': '
             }
           }));
-		  
-
-		    console.log("ROOM IS FREE");
         }
         else {
           this.setState(prevState => ({
@@ -108,7 +105,6 @@ class Display extends Component {
               nextUp: ''
             }
           }));
-		    console.log("ROOM IS BUSY");
         }
       }
     }
