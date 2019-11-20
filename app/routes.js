@@ -58,8 +58,9 @@ module.exports = function(app) {
 		var roomName = req.query.roomName;
 		var startTime = req.query.startTime;
 		var endTime = req.query.endTime;
-		console.log(roomEmail+" | "+roomName+" | "+startTime+" | "+endTime);
-		ews.BookRoom(roomEmail, roomName, startTime, endTime);
+		var bookingType = req.query.bookingType;
+		console.log(roomEmail+" | "+roomName+" | "+startTime+" | "+endTime+" | "+bookingType);
+		ews.BookRoom(roomEmail, roomName, startTime, endTime, bookingType);
 			res.json({ status: 'Booked' });
 	});
 	// redirects everything else to our react app

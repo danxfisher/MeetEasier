@@ -6,22 +6,34 @@ import RoomStatusBlock from './RoomStatusBlock';
 import Sidebar from './Sidebar';
 import Socket from '../global/Socket';
 import Spinner from '../global/Spinner';
+import Popup from './Popup';
 
 class ErrorHandler extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { errorOccurred: false }
+    this.state = { errorOccurred: false, currentError: null }
   }
 
   componentDidCatch(error, info) {
-    this.setState({ errorOccurred: true })
-    console.log(error);
+    this.setState({ errorOccurred: true });
+    this.setState({ currentError: error });
+    //console.log("Component Caught Error");
+    //console.log(error);
   }
+  
   render() {
     if (this.state.errorOccurred){
-
-      window.location.reload();
-     return <div><h2>SOMETHING WENT WRONG - RELOADING</h2></div> 
+      //console.log("Window.location.reload");
+      //console.log(this.state.currentError);
+     // if (this.state.currentError == TypeError){
+       // console.log("TYPE ERROR")
+        if ((this.state.currentError.toString().includes("Cannot read property 'length' of undefined")) || (this.state.currentError.toString().includes("Cannot read property 'Subject' of undefined")))
+        {
+          window.location.reload();
+        }
+     // }
+      //window.location.reload();
+     return <div><h2></h2></div> 
     }
     else{
        return this.props.children; 
@@ -32,7 +44,10 @@ class ErrorHandler extends React.Component {
 class Display extends Component {
   constructor(props) {
     super(props);
+    this.togglePopup = this.togglePopup.bind(this);
     this.state = {
+      showPopup: false,
+      popupText: "Booking now... please wait",
       response: false,
       roomAlias: this.props.alias,
       rooms: [],
@@ -42,10 +57,14 @@ class Display extends Component {
         timesPresent: false,
         upcomingAppointments: false,
         nextUp: ''
-      }
-    }
+      },
+    };
   }
-
+  togglePopup = (text) =>{
+    this.setState({popupText: text});
+    this.setState({showPopup: !this.state.showPopup});
+    
+  }
   getRoomsData = () => {
     return fetch('/api/rooms')
       .then((response) => response.json())
@@ -96,6 +115,9 @@ class Display extends Component {
               nextUp: config.nextUp + ': '
             }
           }));
+		  
+
+		    //console.log("ROOM IS FREE");
         }
         else {
           this.setState(prevState => ({
@@ -104,6 +126,7 @@ class Display extends Component {
               nextUp: ''
             }
           }));
+		    //console.log("ROOM IS BUSY");
         }
       }
     }
@@ -135,7 +158,8 @@ class Display extends Component {
 
         { response ?
           <div className="row expanded full-height">
-            <RoomStatusBlock room={room} details={roomDetails} config={config} />
+            {this.state.showPopup ? <Popup text={this.state.popupText} /> : null}
+            <RoomStatusBlock room={room} details={roomDetails} config={config} togglePopup = {this.togglePopup.bind(this)} showPopup = {this.state.showPopup} />
             <Sidebar room={room} details={roomDetails} config={config} />
           </div>
         :

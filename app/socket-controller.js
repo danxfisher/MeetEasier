@@ -17,7 +17,7 @@ module.exports = function (io){
             io.of('/').emit('controllerDone', 'done');
         	});
 
-          setTimeout(callEWS, 60000);
+          setTimeout(callEWS, 15000);
         })();
       }
 

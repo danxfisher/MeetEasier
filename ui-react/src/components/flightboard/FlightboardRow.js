@@ -66,7 +66,7 @@ const FullScreenIcon = ({ room }) => {
   return (
     <div className="meeting-fullscreen">
       {!room.ErrorMessage &&
-        <Link to={'/single-room/' + room.RoomAlias} target="_blank">
+        <Link to={'/single-room/' + room.RoomAlias} target="_self">
           <i className="fi-monitor"></i>
         </Link>
       }
@@ -91,10 +91,34 @@ const FlightboardRow = ({ room, filter }) => {
   return (
     <div className={'meeting-room__row row-padder ' + roomlist} style={filter === roomlist || filter === 'roomlist-all' || filter === '' ? styles.show : styles.hide}>
       <div className="row">
+      {!room.ErrorMessage &&
+        <Link to={'/single-room/' + room.RoomAlias} target="_self">
+          <div className="medium-12 columns">
+            <div className={roomStatusClass}>
+              <div className="row valign-middle">
+
+                <div className={room.RoomAlias + '-status meeting-room__status medium-2 columns'}>
+                  <Status room={room} />
+                </div>
+                <div className="medium-3 columns">
+                  <div className={room.RoomAlias + '-name meeting-room__name'}>
+                    {room.Name}
+                  </div>
+                </div>
+                <div className="medium-6 columns">
+                  <Subject room={room} />
+                  <Time room={room} />
+                  <Organizer room={room} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Link>
+      }
+      {room.ErrorMessage &&
         <div className="medium-12 columns">
           <div className={roomStatusClass}>
             <div className="row valign-middle">
-
               <div className={room.RoomAlias + '-status meeting-room__status medium-2 columns'}>
                 <Status room={room} />
               </div>
@@ -115,6 +139,7 @@ const FlightboardRow = ({ room, filter }) => {
             </div>
           </div>
         </div>
+      }
       </div>
     </div>
   );
