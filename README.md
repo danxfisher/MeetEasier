@@ -202,7 +202,3 @@ There are three main directories in the `ui-react/src/` folder:
 ## Resources & Attributions
 
 * [ews-javascript-api](https://github.com/gautamsi/ews-javascript-api)
-* Mockup Images:
-  * https://www.anthonyboyd.graphics/mockups/2017/realistic-ipad-pro-mockup-vol-3/
-  * https://www.freepik.com/free-psd/business-meeting-with-tv-mockup_1163371.htm
-  * https://www.freepik.com/free-psd/samsung-tv-mockup_800771.htm
