@@ -7,7 +7,7 @@ module.exports = {
   },
 
   'navbar' : {
-    'title' : 'Conference Room Availability',
+    'title' : 'Conference Room Flightboard',
   },
 
   'roomFilter' : {
