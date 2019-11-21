@@ -8,7 +8,7 @@ MeetEasier is a web application that visualizes meeting room availability.  It w
 
 This particular fork adds additional functionality (e.g. buttons for making bookings, extending bookings and ending meetings) and hides some options depending on environment variables (set in the .env files)
 
-![Mockup 1](mockups/mockup-1.jpg)
+![Mockup 1](mockups/mockup-1.png)
 
 ***
 
@@ -191,11 +191,11 @@ There are three main directories in the `ui-react/src/` folder:
 
 ## Flightboard Layout Mockup
 
-![Mockup 3](mockups/mockup-3.jpg)
+![Mockup 3](mockups/mockup-3.png)
 
 ## Single Room Layout Mockup
 
-![Mockup 2](mockups/mockup-2.jpg)
+![Mockup 2](mockups/mockup-2.png)
 
 ***
 
