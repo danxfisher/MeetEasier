@@ -19,7 +19,7 @@
     "grunt-contrib-sass": "1.0.0",
     "grunt-contrib-watch": "1.1.0",
     "socket.io": "2.3.0",
-    "utf-8-validate": "^5.0.2"
+    "utf-8-validate": "5.0.2"
   },
   "devDependencies": {}
 }
