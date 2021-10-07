@@ -161,7 +161,7 @@ There are three main directories in the `ui-react/src/` folder:
 * Alternatively, username, password and domain can be set as environment variable
 
     ```bash
-    export USERNAME=svcacct_email@domain.com
+    export USRNAME=svcacct_email@domain.com
     export PASSWORD=password
     export DOMAIN=domain.com
     ```
