@@ -2,7 +2,7 @@
 module.exports = {
   // this user MUST have full access to all the room accounts
   'exchange' : {
-    'username'  : process.env.USERNAME || 'SVCACCT_EMAIL@DOMAIN.COM',
+    'username'  : process.env.USRNAME || process.env.USERNAME || 'SVCACCT_EMAIL@DOMAIN.COM',
     'password'  : process.env.PASSWORD || 'PASSWORD',
     'uri'       : 'https://outlook.office365.com/EWS/Exchange.asmx'
   },
