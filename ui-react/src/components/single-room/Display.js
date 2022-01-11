@@ -17,22 +17,14 @@ class ErrorHandler extends React.Component {
   componentDidCatch(error, info) {
     this.setState({ errorOccurred: true });
     this.setState({ currentError: error });
-    //console.log("Component Caught Error");
-    //console.log(error);
   }
   
   render() {
     if (this.state.errorOccurred){
-      //console.log("Window.location.reload");
-      //console.log(this.state.currentError);
-     // if (this.state.currentError == TypeError){
-       // console.log("TYPE ERROR")
         if ((this.state.currentError.toString().includes("Cannot read property 'length' of undefined")) || (this.state.currentError.toString().includes("Cannot read property 'Subject' of undefined")))
         {
           window.location.reload();
         }
-     // }
-      //window.location.reload();
      return <div><h2></h2></div> 
     }
     else{
