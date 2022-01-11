@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "jquery": "3.2.1",
+    "jquery": "^3.4.1",
     "prop-types": "15.6.2",
     "react": "16.0.0",
     "react-dom": "16.0.0",
     "react-router-dom": "4.2.2",
     "react-scripts": "1.1.4",
-    "socket.io-client": "2.0.3"
+    "socket.io-client": "2.0.3",
+	"dotenv": "^8.2.0"
   },
   "devDependencies": {
     "babel-core": "6.25.0",
@@ -18,7 +19,7 @@
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
     "enzyme-to-json": "3.3.4",
-    "jest-extended": "^0.8.1",
+    "jest-extended": "^0.11.2",
     "sinon": "6.1.4"
   },
   "scripts": {

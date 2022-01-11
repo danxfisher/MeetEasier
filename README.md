@@ -1,12 +1,14 @@
-# MeetEasier
+# MeetEasier - Custom Fork for Raspberry Pi Official Touchscreen
 
-Because why pay money for something you can do yourself?
+
 
 ## Description
-
+This is a customised fork of "MeetEasier" https://github.com/danxfisher/MeetEasier.
 MeetEasier is a web application that visualizes meeting room availability.  It works using Exchange Web Services (EWS) with Exchange room lists in Office 365.
 
-![Mockup 1](mockups/mockup-1.jpg)
+This particular fork adds additional functionality (e.g. buttons for making bookings, extending bookings and ending meetings) and hides some options depending on environment variables (set in the .env files)
+
+![Mockup 1](mockups/mockup-1.png)
 
 ***
 
@@ -18,37 +20,7 @@ In the event of wanting to commercially distribute a closed source modification 
 
 ***
 
-## Updates
 
-* v0.3.4
-  * [#34](https://github.com/danxfisher/MeetEasier/pull/34) - bug fix for 'Next up:' displaying incorrectly
-* v0.3.3
-  * [#18](https://github.com/danxfisher/MeetEasier/pull/15) - use localized sort for rooms
-* v0.3.2
-  * Added additional error handling for incorrect credentials.  The error will now be shown on the front end.
-  * Updated the socket component to stop most ERR_CONNECTION_REFSUED errors from happening.
-* v0.3.1
-  * Removed skipped rooms/room blacklist filtering from front end and added to back end.
-* v0.3
-  * Cleaned up unnecessarily nested component folder structure
-  * [#8](https://github.com/danxfisher/MeetEasier/pull/8) - add script-shortcuts to `package.json` in root
-  * [#9](https://github.com/danxfisher/MeetEasier/pull/9) - support environment-variables for authentication and port configuration
-  * [#10](https://github.com/danxfisher/MeetEasier/pull/10) - create shrinkwraps for npm-dependencies
-  * [#11](https://github.com/danxfisher/MeetEasier/pull/11) - add `.editorconfig`
-  * [#12](https://github.com/danxfisher/MeetEasier/pull/12) - pass error (while fetching appointments), to frontend
-  * [#13](https://github.com/danxfisher/MeetEasier/pull/13) - set engine-requirements
-  * [#14](https://github.com/danxfisher/MeetEasier/pull/14) - add heartbeat-endpoint, to check if server is alive (for monitoring)
-  * [#15](https://github.com/danxfisher/MeetEasier/pull/15) - add '.nvmrc'
-* v0.2
-  * Changed domain to accept more than just ".com" extension
-  * Changed `ui-react/config/flightboard.config.js` to handle all text so that the application can be multilingual
-  * Added `ui-react/config/singleRoom.config.js` to do the same for the `single-room` component
-  * Added `console.log` to `server.js` to know when the server is running correctly
-  * Updated styles slightly
-* v0.1
-  * Initial release
-
-***
 
 ## Assumptions
 
@@ -144,7 +116,7 @@ There are three main directories in the `ui-react/src/` folder:
 
 ### Simple
 
-* In `/config/auth.js`, enter your credentials and domain:
+* In `/config/auth/auth.js`, enter your credentials and domain:
 
     ```javascript
     module.exports = {
@@ -219,18 +191,14 @@ There are three main directories in the `ui-react/src/` folder:
 
 ## Flightboard Layout Mockup
 
-![Mockup 3](mockups/mockup-3.jpg)
+![Mockup 3](mockups/mockup-3.png)
 
 ## Single Room Layout Mockup
 
-![Mockup 2](mockups/mockup-2.jpg)
+![Mockup 2](mockups/mockup-2.png)
 
 ***
 
 ## Resources & Attributions
 
 * [ews-javascript-api](https://github.com/gautamsi/ews-javascript-api)
-* Mockup Images:
-  * https://www.anthonyboyd.graphics/mockups/2017/realistic-ipad-pro-mockup-vol-3/
-  * https://www.freepik.com/free-psd/business-meeting-with-tv-mockup_1163371.htm
-  * https://www.freepik.com/free-psd/samsung-tv-mockup_800771.htm

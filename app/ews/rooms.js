@@ -2,14 +2,20 @@ module.exports = function (callback) {
 
   // modules -------------------------------------------------------------------
   var ews = require("ews-javascript-api");
-  var auth = require("../../config/auth.js");
+  var auth = require("../../config/auth/auth.js");
   var blacklist = require("../../config/room-blacklist.js");
-
-  // ews -----------------------------------------------------------------------
-  var exch = new ews.ExchangeService(ews.ExchangeVersion.Exchange2016);
-  exch.Credentials = new ews.ExchangeCredentials(auth.exchange.username, auth.exchange.password);
+  
+  //if NTLM
+  require('dotenv').config()
+  //console.log(".env = " + process.env.REACT_APP_EnableNTLM);
+  if (process.env.REACT_APP_EnableNTLM=="true") {
+    var ewsNTLM = require("ews-javascript-api-auth");
+    ews.ConfigurationApi.ConfigureXHR(new ewsNTLM.ntlmAuthXhrApi(auth.exchange.username, auth.exchange.password, true));
+  }
+  //
+  const exch = new ews.ExchangeService(ews.ExchangeVersion.Exchange2013);
+    exch.Credentials = new ews.WebCredentials(auth.exchange.username, auth.exchange.password);
   exch.Url = new ews.Uri(auth.exchange.uri);
-
 
   // promise: get all room lists
   var getListOfRooms = function () {
@@ -29,7 +35,11 @@ module.exports = function (callback) {
     var promise = new Promise(function (resolve, reject) {
       var roomAddresses = [];
       var counter = 0;
-
+	  const fs = require('fs');
+	  fs.truncate('./ui-react/build/roomlinks.txt', 0, function(){console.log('roomlinks.txt file cleared')});
+	  fs.truncate('./ui-react/build/roomnames.txt', 0, function(){console.log('roomnames.txt file cleared')});
+	  var ip = require("ip");
+	  
       roomLists.forEach(function (item, i, array) {
         exch.GetRooms(new ews.Mailbox(item.Address)).then((rooms) => {
           rooms.forEach(function (roomItem, roomIndex, roomsArray) {
@@ -39,7 +49,7 @@ module.exports = function (callback) {
             // if not in blacklist, proceed as normal; otherwise, skip
             if (!inBlacklist) {
               let room = {};
-
+			  
               // if the email addresses != your corporate domain,
               // replace email domain with domain
               let email = roomItem.Address;
@@ -47,12 +57,29 @@ module.exports = function (callback) {
               email = email + '@' + auth.domain;
 
               let roomAlias = roomItem.Name.toLowerCase().replace(/\s+/g, "-");
-
+			  
+			  //console.log(roomAlias);
+			 // fs.appendFile('./ui-react/build/roomlinks.txt', 'http://'+ip.address()+':8080/single-room/' + roomAlias + '\r\n', function(err){
+			  fs.appendFile('./ui-react/build/roomlinks.txt', 'http://localhost:8080/single-room/' + roomAlias + '\r\n', function(err){
+				  if(err){
+					  return console.log(err);
+				  }
+				  //console.log("Alias Saved");
+			  });
+			  fs.appendFile('./ui-react/build/roomnames.txt', roomItem.Name.toLowerCase() + '\r\n', function(err){
+				  if(err){
+					  return console.log(err);
+				  }
+				  //console.log("Alias Saved");
+			  });
               room.Roomlist = item.Name;
               room.Name = roomItem.Name;
               room.RoomAlias = roomAlias;
               room.Email = email;
               roomAddresses.push(room);
+			  //console.log(roomAddresses);
+			  //console.log(room.Roomlist);
+			  //console.log(room.Name);
             }
           });
           counter++;
@@ -69,20 +96,21 @@ module.exports = function (callback) {
 
   var fillRoomData = function (context, room, appointments = [], option = {}) {
     room.Appointments = [];
+	
     appointments.forEach(function(appt, index) {
+		
       // get start time from appointment
       var start = processTime(appt.Start.momentDate),
           end = processTime(appt.End.momentDate),
           now = Date.now();
-
+	  
       room.Busy = index === 0
         ? start < now && now < end
         : room.Busy;
-
       let isAppointmentPrivate = appt.Sensitivity === 'Normal' ? false : true;
 
       let subject = isAppointmentPrivate ? 'Private' : appt.Subject;
-
+	  console.log("Appointment Subject: " + subject);
       room.Appointments.push({
         "Subject" : subject,
         "Organizer" : appt.Organizer.Name,
@@ -112,15 +140,21 @@ module.exports = function (callback) {
         itemsProcessed: 0,
         roomAddresses
       };
-
+	  //console.log(roomAddresses);
       roomAddresses.forEach(function(room, index, array){
         var calendarFolderId = new ews.FolderId(ews.WellKnownFolderName.Calendar, new ews.Mailbox(room.Email));
-        var view = new ews.CalendarView(ews.DateTime.Now, new ews.DateTime(ews.DateTime.Now.TotalMilliSeconds + ews.TimeSpan.FromHours(240).asMilliseconds()), 6);
+		//console.log(calendarFolderId);
+        var view = new ews.CalendarView(ews.DateTime.Now, new ews.DateTime(ews.DateTime.Now.TotalMilliSeconds + 576000000), 6);
+		
+		
         exch.FindAppointments(calendarFolderId, view).then((response) => {
+			//console.log(room);
+		  //console.log(response.Items);
           fillRoomData(context, room, response.Items);
         }, (error) => {
           // handle the error here
           // callback(error, null);
+		  console.log(error);
           fillRoomData(context, room, undefined, { errorMessage: error.response.errorMessage });
         });
       });

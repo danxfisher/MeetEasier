@@ -43,10 +43,26 @@ module.exports = function(app) {
 	});
 
 	// heartbeat-service to check if server is alive
-  app.get('/api/heartbeat', function(req, res) {
-    res.json({ status: 'OK' });
-  });
+ 	app.get('/api/heartbeat', function(req, res) {
+    	res.json({ status: 'OK' });
+  	});
+	
+	// books a room
+	app.get('/api/roombooking', function(req, res){
 
+		console.log("Route Room Booking");
+		//console.log(req);
+
+		var ews = require('./ews/roombooking.js');
+		var roomEmail = req.query.roomEmail;
+		var roomName = req.query.roomName;
+		var startTime = req.query.startTime;
+		var endTime = req.query.endTime;
+		var bookingType = req.query.bookingType;
+		console.log(roomEmail+" | "+roomName+" | "+startTime+" | "+endTime+" | "+bookingType);
+		ews.BookRoom(roomEmail, roomName, startTime, endTime, bookingType);
+			res.json({ status: 'Booked' });
+	});
 	// redirects everything else to our react app
 	app.get('*', function(req, res) {
 		res.sendFile(path.join(__dirname,'../ui-react/build/','index.html'));

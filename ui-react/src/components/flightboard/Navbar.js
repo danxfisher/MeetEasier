@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as config from '../../config/flightboard.config.js';
+import ReactDOM from 'react-dom' ;
 
 import Clock from './Clock';
 import RoomFilterContainer from './RoomFilterContainer';
@@ -23,9 +24,11 @@ class Navbar extends Component {
               <li>
                 <span id="fb__navbar-title">{config.navbar.title}</span>
                 <br />
-                <ul id="roomlist-filter" className="dropdown menu fb__dropdown" data-dropdown-menu>
-                  <RoomFilterContainer filter={this.handleFilter}/>
-                </ul>
+				{process.env.REACT_APP_ROOMLIST=="true" &&
+				  <ul id="roomlist-filter" className="dropdown menu fb__dropdown" data-dropdown-menu>
+					<RoomFilterContainer filter={this.handleFilter}/>
+				  </ul>
+				}
               </li>
             </ul>
           </div>
