@@ -14,7 +14,7 @@ module.exports = {
 		exch.Credentials = new ews.WebCredentials(auth.exchange.username, auth.exchange.password);
 		exch.Url = new ews.Uri(auth.exchange.uri);
 		//ews.EwsLogging.DebugLogEnabled = true;
-		if ((bookingType == 'BookNow') || (bookingType == 'BookAfter')){
+		if ((bookingType === 'BookNow') || (bookingType === 'BookAfter')){
 			console.log("BookNow/BookAfter");
 			var promise = new Promise (function (resolve, reject) { 
 				var appointment = new ews.Appointment(exch);
@@ -39,7 +39,7 @@ module.exports = {
 				console.log(err);
 			});
 		}
-		else if ((bookingType == 'Extend') || (bookingType == 'EndNow')){
+		else if ((bookingType === 'Extend') || (bookingType === 'EndNow')){
 			var calendarFolderId = new ews.FolderId(ews.WellKnownFolderName.Calendar, new ews.Mailbox(roomEmail));
 		   	var view = new ews.CalendarView(ews.DateTime.Now, new ews.DateTime(ews.DateTime.Now.TotalMilliSeconds + 576000000), 6);
 	        exch.FindAppointments(calendarFolderId, view).then((response) => {
@@ -55,7 +55,7 @@ module.exports = {
 					console.log(start);
 					var apptStartewsDT = new ews.DateTime(new Date(parseInt(start, 10)));
 					var apptStartTime = moment(start).toISOString();
-					if (apptStartTime == startTime){
+					if (apptStartTime === startTime){
 						var promise = new Promise (function (resolve, reject) { 
 							
 							appt.End = new ews.DateTime(endTime);
